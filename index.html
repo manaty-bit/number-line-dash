@@ -44,6 +44,84 @@ dialog.overlay{border:0;margin:0;max-width:none;max-height:none;width:100%;heigh
  .gamehead{margin-bottom:10px}.tutorial-progress{padding:10px 16px;margin-bottom:10px}
  .equation{margin:8px 0 5px}.gamecard{padding:12px 16px}
 }
+
+/* Compact learning workspace; home and certificate layouts are unchanged. */
+#gameScreen .boardlegend .st{border-radius:2px}
+#gameScreen .ticktxt{font-size:17px;fill:#d1e3e8}
+#gameScreen .ticktxt.zero-tick{font-weight:900;fill:#b7f3dd}
+body[data-screen=game] .footer{padding:10px 0;flex-wrap:wrap}
+@media(min-width:981px){
+ body[data-screen=game] .page{max-width:1400px;padding:10px 22px 8px}
+ body[data-screen=game] .topbar{margin-bottom:3px}
+ #gameScreen .back{padding:4px 0;font-size:13px}
+ #gameScreen .gamehead{margin-bottom:7px;gap:6px}
+ #gameScreen .gametitle{font-size:23px;line-height:1.2}
+ #gameScreen .tutorial-progress{padding:8px 13px;margin-bottom:8px;gap:10px}
+ #gameScreen .tutorial-symbol{width:36px;height:36px;font-size:22px}
+ #gameScreen .tutorial-progress strong{font-size:15px}
+ #gameScreen .tutorial-progress p{font-size:13px;margin:1px 0 0}
+ #gameScreen .tut-track{margin-top:4px;height:4px}
+ #gameScreen .gamegrid{grid-template-columns:minmax(0,1fr) minmax(245px,27%);gap:10px;align-items:start}
+ #gameScreen .gameleft,#gameScreen .gameright{gap:8px}
+ #gameScreen .gamecard{padding:10px 14px;border-radius:16px}
+ #gameScreen .progressline{margin-top:5px}
+ #gameScreen .progressline i{height:5px}
+ #gameScreen .equation{font-size:clamp(30px,3.2vw,44px);margin:5px 0;line-height:1.18}
+ #gameScreen .starting{padding:4px 9px;font-size:12px}
+ #gameScreen .board{padding:9px 12px 6px;border-radius:13px}
+ #gameScreen #track{min-width:0;margin-top:2px;max-height:clamp(145px,26vh,240px)}
+ #gameScreen .boardlegend{margin-top:2px}
+ #gameScreen .pad{margin-top:7px;gap:7px}
+ #gameScreen .move{min-height:44px}
+ #gameScreen .controlrow{margin-top:3px}
+ #gameScreen .textbtn{padding:4px 0}
+ #gameScreen .scorecard{padding:12px 15px;border-radius:16px}
+ #gameScreen .scorenumbers{margin:4px 0}
+ #gameScreen .scorenumbers strong{font-size:37px}
+ #gameScreen .scorecard p{margin-top:3px}
+ #gameScreen .scorecard .mini{padding-top:6px;margin-top:7px}
+ #gameScreen .answercard{min-height:0;flex:0;padding:12px 15px;border-radius:16px}
+ #gameScreen .answercard .iconround{float:left;width:27px;height:27px;font-size:16px;margin-right:8px;border-radius:8px}
+ #gameScreen .answercard h3{margin:3px 0 9px;font-size:16px}
+ #gameScreen .answercard p{clear:both;font-size:13px;line-height:1.5;margin:4px 0}
+ #gameScreen .answercard .detail{font-size:12px;margin-top:5px}
+ #gameScreen .result-action .action{min-height:46px;padding:8px 12px}
+ #gameScreen .hintfooter{font-size:11px}
+}
+@media(min-width:981px) and (max-height:650px){
+ #gameScreen #track{max-height:150px}
+ #gameScreen .equation{font-size:30px}
+}
+
+.tutorial-rule{display:flex;align-items:center;flex-wrap:wrap;gap:5px 12px;margin-top:5px}.tutorial-rule>span{font-size:12px;font-weight:850;color:#194b45}.tutorial-rule .tutorial-rewrite{font-family:"Cambria Math","Times New Roman",serif;font-size:19px;background:#fff;border:1px solid #b9ded0;border-radius:6px;padding:2px 9px;color:#14343a;line-height:1.15}.tutorial-rule[data-direction=left] .tutorial-rewrite{border-left:4px solid #577f9d}.tutorial-rule[data-direction=right] .tutorial-rewrite{border-right:4px solid #258d70}@media(min-width:981px){#gameScreen .tutorial-rule{margin-top:3px}#gameScreen .tutorial-progress .tutorial-symbol{display:none}}
+
+/* Tutorial: large mathematical rule, equivalent expression and independent example. */
+#gameScreen #tutorialCoach{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,1fr);gap:6px 16px;padding:10px 15px;align-items:center;margin-bottom:8px}
+#gameScreen #tutorialCoach .tutorial-words{min-width:0}
+#gameScreen #tutorialPrompt{font-size:clamp(22px,2.35vw,32px);line-height:1.24;letter-spacing:-.035em;font-weight:1000}
+#gameScreen #tutorialCoach .tutorial-rule{display:flex;flex-wrap:wrap;align-items:center;gap:5px 12px;margin-top:6px}
+#gameScreen #tutorialRule{font-size:clamp(16px,1.4vw,20px);line-height:1.3;font-weight:900;overflow-wrap:anywhere}
+#gameScreen #tutorialRewrite{display:inline-block;flex:none;max-width:100%;font-family:"STIX Two Math","Cambria Math","Times New Roman",serif;font-size:clamp(27px,3vw,40px);font-weight:700;line-height:1.12;padding:4px 12px;white-space:nowrap;border-radius:9px;color:#14343a;background:#fff}
+#gameScreen #tutorialDetail{font-size:15px;line-height:1.45;margin:6px 0 0}
+#gameScreen .tutorial-example{background:#162f3a;border-radius:12px;min-width:0;padding:5px 10px 2px;color:#fff}
+#gameScreen .tutorial-example-label{font-size:12px;color:#d4e5e8;font-weight:800;line-height:1.2}
+#gameScreen #tutorialExample{display:block;width:100%;height:112px}
+#gameScreen .tutorial-bottom{grid-column:1/-1;display:flex;align-items:center;gap:10px}
+#gameScreen .tutorial-bottom .tut-track{flex:1;margin:0;height:5px}
+#gameScreen .tutorial-bottom .tutorial-counter{padding:3px 9px;font-size:12px}
+@media(min-width:981px) and (max-height:820px){
+ #gameScreen #tutorialCoach{padding:8px 12px;gap:4px 12px}
+ #gameScreen #tutorialExample{height:96px}
+ #gameScreen:has(#tutorialCoach:not(.hide)) #track{max-height:clamp(145px,23vh,190px)}
+}
+@media(max-width:980px){
+ #gameScreen #tutorialCoach{grid-template-columns:minmax(0,1fr);gap:8px;padding:12px}
+ #gameScreen #tutorialPrompt{font-size:24px}
+ #gameScreen #tutorialRewrite{font-size:30px}
+ #gameScreen #tutorialRule{font-size:17px}
+ #gameScreen #tutorialExample{height:auto;max-height:144px}
+}
+@media(max-width:390px){#gameScreen #tutorialRewrite{font-size:clamp(24px,7.6vw,30px);padding:4px 8px}#gameScreen #tutorialPrompt{font-size:22px}}
 </style>
 </head>
 <body><div class="page">
@@ -58,7 +136,7 @@ dialog.overlay{border:0;margin:0;max-width:none;max-height:none;width:100%;heigh
   <div class="sectionbar" id="stageArea"><div><span class="eyebrow" data-i="chapterEyebrow">STAGE SELECT</span><h2 data-i="chooseTitle">4つのステージに挑戦</h2></div><div class="progresspill" id="completedPill">0 / 4 修了</div></div>
   <div class="tutorial-invite" id="tutorialInvite">
     <div class="tutorial-face" aria-hidden="true"><svg viewBox="0 0 82 82"><circle cx="41" cy="45" r="30" fill="#ffa96a" stroke="#204d4b" stroke-width="5"/><path d="M39 15 29 2M43 15 53 2" fill="none" stroke="#204d4b" stroke-width="5" stroke-linecap="round"/><circle cx="30" cy="39" r="3.3" fill="#204d4b"/><circle cx="52" cy="39" r="3.3" fill="#204d4b"/><path d="M29 53q12 14 25 0" fill="none" stroke="#204d4b" stroke-width="4" stroke-linecap="round"/></svg></div>
-    <div class="tutorial-copy"><div class="eyebrow">STAGE 00 · TUTORIAL</div><h3 data-i="tutorialCardTitle">はじめての数直線</h3><p data-i="tutorialCardText">笑顔のランナーと4つの練習。左右への動かし方を覚えよう！</p></div>
+    <div class="tutorial-copy"><div class="eyebrow">STAGE 00 · TUTORIAL</div><h3 data-i="tutorialCardTitle">はじめての数直線</h3><p data-i="tutorialCardText">笑顔のランナーと4つの練習。正負の数の加法・減法と移動の向きを覚えよう！</p></div>
     <button type="button" class="action" id="tutorialHome" data-i="tutorialCardButton">練習してみる ↗</button>
   </div>
   <div class="chaptergrid" id="chapterGrid"></div>
@@ -70,9 +148,13 @@ dialog.overlay{border:0;margin:0;max-width:none;max-height:none;width:100%;heigh
   <button class="back" data-back="home" data-i="back">← タイトルへ</button>
   <div class="gamehead"><div><div class="gamelabel" id="gameEyebrow">STAGE 01 / ADDITION</div><div class="gametitle" id="gameTitle">正負の数の足し算</div></div></div>
    <div class="tutorial-progress hide" id="tutorialCoach" aria-live="polite">
-     <div class="tutorial-symbol" aria-hidden="true">☀</div>
-     <div class="tutorial-words"><strong id="tutorialPrompt">右へ3進んでみよう！</strong><p id="tutorialDetail">数直線のボタンを使ってね。</p><div class="tut-track"><span class="tut-fill" id="tutorialFill"></span></div></div>
-     <span class="tutorial-counter" id="tutorialCount">1 / 4</span>
+     <div class="tutorial-words">
+       <strong id="tutorialPrompt">正の数をたすと、右へ進む！</strong>
+       <div class="tutorial-rule"><span class="tutorial-rewrite" id="tutorialRewrite"></span><span id="tutorialRule"></span></div>
+       <p id="tutorialDetail">数直線のボタンを使ってね。</p>
+     </div>
+     <div class="tutorial-example"><div id="tutorialExampleLabel" class="tutorial-example-label">動きの見本</div><svg id="tutorialExample" viewBox="0 0 360 108" role="img" aria-labelledby="tutorialExampleLabel"></svg></div>
+     <div class="tutorial-bottom"><div class="tut-track"><span class="tut-fill" id="tutorialFill"></span></div><span class="tutorial-counter" id="tutorialCount">1 / 4</span></div>
    </div>
    <div class="gamegrid">
    <div class="gameleft">
@@ -87,7 +169,7 @@ dialog.overlay{border:0;margin:0;max-width:none;max-height:none;width:100%;heigh
   </div>
  </section>
 </main>
-<footer class="footer"><strong>NUMBER LINE DASH · MATH GAME 01</strong><span data-i="footer">正しく考えた、その一歩が力になる。</span><small style="display:block">© 2026 MANATY LAB · <a href="https://manaty-bit.github.io/math-app-portal/terms.html" data-i="terms">利用条件</a></small></footer>
+<footer class="footer"><strong>NUMBER LINE DASH · MATH GAME 01</strong><span data-i="footer">正しく考えた、その一歩が力になる。</span><span style="overflow-wrap:anywhere">© 2026 MANATY LAB. All rights reserved. · <a href="https://manaty-bit.github.io/math-app-portal/terms.html" target="_blank" rel="noopener noreferrer">利用条件 / Terms of use</a></span></footer>
 </div>
 <dialog class="overlay hide" id="nameOverlay" aria-labelledby="nameModalTitle"><div class="modal sm"><span class="eyebrow">LET'S GET STARTED</span><h2 id="nameModalTitle" data-i="namePrompt">プレイヤー名を教えてね</h2><p data-i="nameDesc">賞状に表示される名前を入力してください。名前は後から変更できます。</p><label for="nameInput" class="smallcaps" data-i="playerName">プレイヤー名</label><input class="input" id="nameInput" maxlength="32" autocomplete="off" data-placeholder="nameExample"><div class="modalaction"><button class="action outline" id="nameCancel" data-i="cancel">キャンセル</button><button class="action" id="nameSave" data-i="applyName">はじめる →</button></div></div></dialog>
 <dialog class="overlay hide" id="certOverlay" aria-labelledby="certModalTitle"><div class="modal"><span class="eyebrow">MISSION COMPLETE</span><h2 id="certModalTitle" data-i="certHeading">賞状が届きました！</h2><p data-i="certText">保存した画像を課題として提出できます。</p><div class="canvasbox"><canvas id="certificate" width="1440" height="1018" aria-label="賞状画像"></canvas></div><div class="certdetail"><span id="certStat"></span><span id="certTime"></span></div><div class="modalaction"><button class="action outline" id="certClose" data-i="close">とじる</button><button class="action outline" id="awardLanguage">EN</button><button class="action outline" id="awardName" data-i="nameNav">名前を入力</button><button class="action" id="certSave" data-i="saveImg">画像を保存する ↓</button></div></div></dialog>
@@ -106,10 +188,10 @@ root.NumberLineDashEngine={LIMIT,delta,makeQ,generate};
 'use strict';
 const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg',STORAGE='number-line-dash-v3',COUNT=10;
 const TUTORIAL=[
- {first:0,steps:[{op:'+',n:3}],ja:'0から右へ3進もう！',en:'Start at 0. Move right 3!',detailJa:'「3 ▶」を押して、+3の位置を見つけよう。',detailEn:'Tap “3 ▶” and find +3.'},
- {first:0,steps:[{op:'+',n:-2}],ja:'今度は左へ2進もう！',en:'Now move left 2!',detailJa:'「◀ 1」を2回押して、−2を目指そう。',detailEn:'Tap “◀ 1” twice to reach −2.'},
- {first:4,steps:[{op:'+',n:-3}],ja:'4から左へ3進もう！',en:'Start at 4. Move left 3!',detailJa:'出発点はいつも0とは限らないよ。4から1へ。',detailEn:'You do not always start at zero. Move from 4 to 1.'},
- {first:2,steps:[{op:'-',n:-2}],ja:'マイナスを引くと、どっち？',en:'Which way when subtracting a negative?',detailJa:'−2を足すと左へ2。−2を引くと、その反対の右へ2進むよ。',detailEn:'Adding −2 moves left 2. Subtracting −2 reverses that move: go right 2.'}
+ {first:0,steps:[{op:'+',n:3}],ja:'正の数をたすと、右へ進む！',en:'Adding a positive number moves right!',detailJa:'＋3をたすので、出発点から右へ3進もう。',detailEn:'Add +3: move 3 units right from the start.',ruleJa:'正の数の加法 → 右',ruleEn:'Add a positive → right',rewrite:'0 + (+3) = 0 + 3',direction:'right'},
+ {first:0,steps:[{op:'+',n:-2}],ja:'負の数をたすと、左へ進む！',en:'Adding a negative number moves left!',detailJa:'−2をたすことは、正の数2を引くことと同じ。左へ2進もう。',detailEn:'Adding −2 is the same as subtracting positive 2. Move 2 units left.',ruleJa:'負の数の加法 → 正の数の減法 → 左',ruleEn:'Add a negative → subtract a positive → left',rewrite:'0 + (−2) = 0 − 2',direction:'left'},
+ {first:4,steps:[{op:'-',n:3}],ja:'正の数を引くと、左へ進む！',en:'Subtracting a positive number moves left!',detailJa:'＋3を引くので、出発点4から左へ3進もう。',detailEn:'Subtract +3: move 3 units left from the start at 4.',ruleJa:'正の数の減法 → 左',ruleEn:'Subtract a positive → left',rewrite:'4 − (+3) = 4 − 3',direction:'left'},
+ {first:2,steps:[{op:'-',n:-2}],ja:'負の数を引くと、右へ進む！',en:'Subtracting a negative number moves right!',detailJa:'−2を引くことは、正の数2をたすことと同じ。右へ2進もう。',detailEn:'Subtracting −2 is the same as adding positive 2. Move 2 units right.',ruleJa:'負の数の減法 → 正の数の加法 → 右',ruleEn:'Subtract a negative → add a positive → right',rewrite:'2 − (−2) = 2 + 2',direction:'right'}
 ];
 const TUTORIAL_LENGTH=TUTORIAL.length;
 const STAGES=[
@@ -118,10 +200,9 @@ const STAGES=[
 {id:'mixed',ja:'正負の数の足し算・引き算',en:'Add & subtract',hintJa:'記号を見分けて、正しく動かそう',hintEn:'Watch both signs and choose your route',capJa:'応用',capEn:'APPLY'},
 {id:'complex',ja:'正負の数の複合問題',en:'Multi-step expressions',hintJa:'0から出発して式全体をたどろう',hintEn:'Trace every term starting at zero',capJa:'チャレンジ',capEn:'CHALLENGE'}
 ];
-const TXT={ja:{homeEyebrow:'MATH GAME · 01',heroTitle:'数直線<br>ダッシュ<span style="color:#ff9759">。</span>',heroSub:'正と負を、動かしてつかもう。<br>10問ずつのミッションをクリアして、賞状を手に入れよう。',start:'プレイする',learnBtn:'基本を学ぶ',chapterEyebrow:'STAGE SELECT',chooseTitle:'4つのステージに挑戦',extra:'EXTRA MISSION',challengeTitle:'60秒チャレンジ',challengeDesc:'時間内に何問解ける？ 記録入りの賞状に挑戦しよう。',challengeGo:'挑戦する ↗',back:'← タイトルへ',learnEyebrow:'READY TO PLAY?',learnTitle:'まずは、考え方をつかもう。',learnSub:'数直線の動きをイメージできれば、負の数の計算はもっとわかりやすくなる。',selectStages:'ステージを選ぶ →',awardHistory:'これまでの賞状',historySub:'保存した賞状をもう一度表示できます。',lineTitle:'数字の道',departure:'出発',prediction:'予想',answer:'答え',controlHint:'数直線をタップしても移動できます',reset:'↺ 出発点に戻す',submit:'これで決定！ →',next:'次の問題へ →',footer:'正しく考えた、その一歩が力になる。',namePrompt:'プレイヤー名を教えてね',nameDesc:'賞状に表示される名前を入力してください。名前は後から変更できます。',playerName:'プレイヤー名',cancel:'キャンセル',letsGo:'はじめる →',certHeading:'賞状が届きました！',certText:'保存した画像を課題として提出できます。',close:'とじる',saveImg:'画像を保存する ↓',nameNav:'名前を入力',historyNav:'賞状の記録',done:'修了',newPlay:'はじめる',retry:'もう一度',chapShort:'STAGE',pComplete:n=>`${n} / 4 修了`,startPoint:n=>`出発点：${n}`,fromZero:'0から出発！ 最初の数も、0からの移動として考えよう。',pos:n=>`いまの位置：${n}`,correct:'正解！ いい動きだね',incorrect:'おしい！ 動きを確認しよう',begin:'答えを予想しよう',beginDesc:'数直線を動かして「これで決定！」を押してね。',beginDetail:'計算の動きを目で確認しよう。',result:n=>`答えは ${n}。`,chapterNote:'間違えた問題も最後まで解こう。',challengeNote:'集中して正解を積み重ねよう。',finalNote:'最後までクリアすると、提出用の賞状がもらえるよ。',challengeFinal:'終了すると記録の賞状が出ます。',progress:'PROGRESS',scoreUnit:'/ 10 正解',questionUnit:'問正解',accuracy:n=>`正答率 ${n}%`,bonus:'3連続正解 +2秒',penalty:'不正解 −5秒',nextResult:'結果と賞状を見る →',certAgain:'賞状を見る',empty:'まだ賞状がありません。ステージをクリアしてみよう！',chapterCert:'学習修了証',perfectCert:'パーフェクト賞状',challengeCert:'60秒チャレンジ賞状',certAward:'すべての問題を正解したことをたたえます。',certFinish:'このステージの学習を修了しました。',certTimer:'60秒の挑戦をやり切りました。',certCount:'正解数',certRate:'正答率',certDate:'発行日時',certPlayer:'プレイヤー',certNo:'提出番号',certFraction:(a,b)=>`${a} / ${b} 問正解`,certScore:n=>`${n} 問正解`,introLearn:'基本学習まとめ',tutorialCardTitle:'はじめての数直線',tutorialCardText:'笑顔のランナーと4つの練習。左右への動かし方を覚えよう！',tutorialCardButton:'練習してみる ↗',tutorialDoneButton:'もう一度練習 ↗',tutorialCardDone:'チュートリアルクリア！ いつでもやり直せるよ。',tutorialTitle:'はじめての数直線',tutorialReady:'いっしょに動かそう！',tutorialReadyText:'数直線を動かして、正しい場所で決定しよう。',tutorialWrong:'もう少し！ もう一回やってみよう',tutorialWrongDetail:'間違えても大丈夫。矢印を押してやり直せるよ。',tutorialCorrect:'できた！ いい感じ！',tutorialFinished:'チュートリアルクリア！',tutorialFinishedText:'4つの動かし方を覚えたね。ステージ1へ進もう！',tutorialNext:'次の練習へ →',tutorialNextStage:'ステージ1へ進む →',tutorialProgress:'TUTORIAL',tutorialScoreUnit:'/ 4 STEP',tutorialScoreDetail:'間違えても何度でもやり直せるよ。',tutorialScoreNote:'まずは左右の動きを覚えよう。',tutorialFooter:'ここは練習だから、何度間違えても大丈夫！'},
-en:{homeEyebrow:'MATH GAME · 01',heroTitle:'NUMBER LINE<br>DASH<span style="color:#ff9759">.</span>',heroSub:'Move numbers. Understand signs.<br>Clear ten missions per stage to earn an award.',start:'PLAY NOW',learnBtn:'LEARN THE RULES',chapterEyebrow:'STAGE SELECT',chooseTitle:'Four stages. Four skills.',extra:'EXTRA MISSION',challengeTitle:'60-SECOND CHALLENGE',challengeDesc:'How many answers in one minute? Win your score certificate.',challengeGo:'PLAY ↗',back:'← Back to title',learnEyebrow:'READY TO PLAY?',learnTitle:'See how signed numbers move.',learnSub:'Picture the movement, and every calculation becomes easier to follow.',selectStages:'Choose a stage →',awardHistory:'Your certificates',historySub:'Open and save previously earned certificates.',lineTitle:'NUMBER LINE',departure:'Start',prediction:'Guess',answer:'Answer',controlHint:'You can also tap or drag the number line.',reset:'↺ Return to start',submit:'CHECK ANSWER →',next:'NEXT QUESTION →',footer:'Every move helps you understand.',namePrompt:'What is your player name?',nameDesc:'This name appears on your award. You can change it later.',playerName:'Player name',cancel:'Cancel',letsGo:'START →',certHeading:'You earned a certificate!',certText:'Save this image and submit it as your assignment.',close:'CLOSE',saveImg:'SAVE IMAGE ↓',nameNav:'Enter name',historyNav:'My awards',done:'Completed',newPlay:'PLAY',retry:'REPLAY',chapShort:'STAGE',pComplete:n=>`${n} / 4 completed`,startPoint:n=>`Start at ${n}`,fromZero:'Start at 0! Treat the first number as your first move.',pos:n=>`Your position: ${n}`,correct:'Correct! Great move.',incorrect:'Almost! Review the movement.',begin:'Predict the finish',beginDesc:'Move on the number line, then check your answer.',beginDetail:'Follow each movement to learn the rule.',result:n=>`Answer: ${n}.`,chapterNote:'Finish all ten, even if you miss some.',challengeNote:'Keep collecting correct answers.',finalNote:'Finish this stage to earn a certificate.',challengeFinal:'Your certificate appears when time is up.',progress:'PROGRESS',scoreUnit:'/ 10 correct',questionUnit:'correct',accuracy:n=>`Accuracy ${n}%`,bonus:'3 correct in a row +2s',penalty:'Wrong answer −5s',nextResult:'VIEW RESULT & AWARD →',certAgain:'VIEW AWARD',empty:'No certificates yet. Finish a stage to earn one!',chapterCert:'CERTIFICATE',perfectCert:'PERFECT AWARD',challengeCert:'60-SECOND AWARD',certAward:'Congratulations on answering every question correctly!',certFinish:'You successfully completed this stage.',certTimer:'You finished the 60-second challenge.',certCount:'CORRECT',certRate:'ACCURACY',certDate:'ISSUED AT',certPlayer:'PLAYER',certNo:'SUBMISSION ID',certFraction:(a,b)=>`${a} / ${b} correct`,certScore:n=>`${n} correct`,introLearn:'LEARN THE BASICS',tutorialCardTitle:'Your first number line',tutorialCardText:'Four quick steps with our smiling runner. Learn to move left and right!',tutorialCardButton:'START TUTORIAL ↗',tutorialDoneButton:'PRACTICE AGAIN ↗',tutorialCardDone:'Tutorial complete! You can replay any time.',tutorialTitle:'Your first number line',tutorialReady:'Give it a try!',tutorialReadyText:'Move along the number line and check the finish.',tutorialWrong:'Nearly! Give it another try.',tutorialWrongDetail:'You can try as many times as you like. Use the arrows.',tutorialCorrect:'You got it! Nice move!',tutorialFinished:'Tutorial complete!',tutorialFinishedText:'You mastered all four moves. Head to Stage 1!',tutorialNext:'NEXT STEP →',tutorialNextStage:'GO TO STAGE 1 →',tutorialProgress:'TUTORIAL',tutorialScoreUnit:'/ 4 STEPS',tutorialScoreDetail:'Try again as often as you need.',tutorialScoreNote:'Learn how numbers move.',tutorialFooter:'This is practice. Mistakes are part of learning!'}};
+const TXT={ja:{homeEyebrow:'MATH GAME · 01',heroTitle:'数直線<br>ダッシュ<span style="color:#ff9759">。</span>',heroSub:'正と負を、動かしてつかもう。<br>10問ずつのミッションをクリアして、賞状を手に入れよう。',start:'プレイする',learnBtn:'基本を学ぶ',chapterEyebrow:'STAGE SELECT',chooseTitle:'4つのステージに挑戦',extra:'EXTRA MISSION',challengeTitle:'60秒チャレンジ',challengeDesc:'時間内に何問解ける？ 記録入りの賞状に挑戦しよう。',challengeGo:'挑戦する ↗',back:'← タイトルへ',learnEyebrow:'READY TO PLAY?',learnTitle:'まずは、考え方をつかもう。',learnSub:'数直線の動きをイメージできれば、負の数の計算はもっとわかりやすくなる。',selectStages:'ステージを選ぶ →',awardHistory:'これまでの賞状',historySub:'保存した賞状をもう一度表示できます。',lineTitle:'数字の道',departure:'出発',prediction:'予想',answer:'答え',controlHint:'数直線をタップしても移動できます',reset:'↺ 出発点に戻す',submit:'これで決定！ →',next:'次の問題へ →',footer:'正しく考えた、その一歩が力になる。',namePrompt:'プレイヤー名を教えてね',nameDesc:'賞状に表示される名前を入力してください。名前は後から変更できます。',playerName:'プレイヤー名',cancel:'キャンセル',letsGo:'はじめる →',certHeading:'賞状が届きました！',certText:'保存した画像を課題として提出できます。',close:'とじる',saveImg:'画像を保存する ↓',nameNav:'名前を入力',historyNav:'賞状の記録',done:'修了',newPlay:'はじめる',retry:'もう一度',chapShort:'STAGE',pComplete:n=>`${n} / 4 修了`,startPoint:n=>`出発点：${n}`,fromZero:'0から出発！ 最初の数も、0からの移動として考えよう。',pos:n=>`いまの位置：${n}`,correct:'正解！ いい動きだね',incorrect:'おしい！ 動きを確認しよう',begin:'答えを予想しよう',beginDesc:'数直線を動かして「これで決定！」を押してね。',beginDetail:'計算の動きを目で確認しよう。',result:n=>`答えは ${n}。`,chapterNote:'間違えた問題も最後まで解こう。',challengeNote:'集中して正解を積み重ねよう。',finalNote:'最後までクリアすると、提出用の賞状がもらえるよ。',challengeFinal:'終了すると記録の賞状が出ます。',progress:'PROGRESS',scoreUnit:'/ 10 正解',questionUnit:'問正解',accuracy:n=>`正答率 ${n}%`,bonus:'3連続正解 +2秒',penalty:'不正解 −5秒',nextResult:'結果と賞状を見る →',certAgain:'賞状を見る',empty:'まだ賞状がありません。ステージをクリアしてみよう！',chapterCert:'学習修了証',perfectCert:'パーフェクト賞状',challengeCert:'60秒チャレンジ賞状',certAward:'すべての問題を正解したことをたたえます。',certFinish:'このステージの学習を修了しました。',certTimer:'60秒の挑戦をやり切りました。',certCount:'正解数',certRate:'正答率',certDate:'発行日時',certPlayer:'プレイヤー',certNo:'提出番号',certFraction:(a,b)=>`${a} / ${b} 問正解`,certScore:n=>`${n} 問正解`,introLearn:'基本学習まとめ',tutorialCardTitle:'はじめての数直線',tutorialCardText:'笑顔のランナーと4つの練習。左右への動かし方を覚えよう！',tutorialCardButton:'練習してみる ↗',tutorialDoneButton:'もう一度練習 ↗',tutorialCardDone:'チュートリアルクリア！ いつでもやり直せるよ。',tutorialTitle:'はじめての数直線',tutorialReady:'いっしょに動かそう！',tutorialReadyText:'数直線を動かして、正しい場所で決定しよう。',tutorialWrong:'もう少し！ もう一回やってみよう',tutorialWrongDetail:'間違えても大丈夫。矢印を押してやり直せるよ。',tutorialCorrect:'できた！ いい感じ！',tutorialFinished:'チュートリアルクリア！',tutorialFinishedText:'正負の数の加法・減法の4つのルールを覚えたね。ステージ1へ進もう！',tutorialNext:'次の練習へ →',tutorialNextStage:'ステージ1へ進む →',tutorialProgress:'TUTORIAL',tutorialScoreUnit:'/ 4 STEP',tutorialScoreDetail:'間違えても何度でもやり直せるよ。',tutorialScoreNote:'符号と演算記号から向きを考えよう。',tutorialFooter:'ここは練習だから、何度間違えても大丈夫！'},
+en:{homeEyebrow:'MATH GAME · 01',heroTitle:'NUMBER LINE<br>DASH<span style="color:#ff9759">.</span>',heroSub:'Move numbers. Understand signs.<br>Clear ten missions per stage to earn an award.',start:'PLAY NOW',learnBtn:'LEARN THE RULES',chapterEyebrow:'STAGE SELECT',chooseTitle:'Four stages. Four skills.',extra:'EXTRA MISSION',challengeTitle:'60-SECOND CHALLENGE',challengeDesc:'How many answers in one minute? Win your score certificate.',challengeGo:'PLAY ↗',back:'← Back to title',learnEyebrow:'READY TO PLAY?',learnTitle:'See how signed numbers move.',learnSub:'Picture the movement, and every calculation becomes easier to follow.',selectStages:'Choose a stage →',awardHistory:'Your certificates',historySub:'Open and save previously earned certificates.',lineTitle:'NUMBER LINE',departure:'Start',prediction:'Guess',answer:'Answer',controlHint:'You can also tap or drag the number line.',reset:'↺ Return to start',submit:'CHECK ANSWER →',next:'NEXT QUESTION →',footer:'Every move helps you understand.',namePrompt:'What is your player name?',nameDesc:'This name appears on your award. You can change it later.',playerName:'Player name',cancel:'Cancel',letsGo:'START →',certHeading:'You earned a certificate!',certText:'Save this image and submit it as your assignment.',close:'CLOSE',saveImg:'SAVE IMAGE ↓',nameNav:'Enter name',historyNav:'My awards',done:'Completed',newPlay:'PLAY',retry:'REPLAY',chapShort:'STAGE',pComplete:n=>`${n} / 4 completed`,startPoint:n=>`Start at ${n}`,fromZero:'Start at 0! Treat the first number as your first move.',pos:n=>`Your position: ${n}`,correct:'Correct! Great move.',incorrect:'Almost! Review the movement.',begin:'Predict the finish',beginDesc:'Move on the number line, then check your answer.',beginDetail:'Follow each movement to learn the rule.',result:n=>`Answer: ${n}.`,chapterNote:'Finish all ten, even if you miss some.',challengeNote:'Keep collecting correct answers.',finalNote:'Finish this stage to earn a certificate.',challengeFinal:'Your certificate appears when time is up.',progress:'PROGRESS',scoreUnit:'/ 10 correct',questionUnit:'correct',accuracy:n=>`Accuracy ${n}%`,bonus:'3 correct in a row +2s',penalty:'Wrong answer −5s',nextResult:'VIEW RESULT & AWARD →',certAgain:'VIEW AWARD',empty:'No certificates yet. Finish a stage to earn one!',chapterCert:'CERTIFICATE',perfectCert:'PERFECT AWARD',challengeCert:'60-SECOND AWARD',certAward:'Congratulations on answering every question correctly!',certFinish:'You successfully completed this stage.',certTimer:'You finished the 60-second challenge.',certCount:'CORRECT',certRate:'ACCURACY',certDate:'ISSUED AT',certPlayer:'PLAYER',certNo:'SUBMISSION ID',certFraction:(a,b)=>`${a} / ${b} correct`,certScore:n=>`${n} correct`,introLearn:'LEARN THE BASICS',tutorialCardTitle:'Your first number line',tutorialCardText:'Four quick steps with our smiling runner. Learn how adding and subtracting signed numbers determines direction!',tutorialCardButton:'START TUTORIAL ↗',tutorialDoneButton:'PRACTICE AGAIN ↗',tutorialCardDone:'Tutorial complete! You can replay any time.',tutorialTitle:'Your first number line',tutorialReady:'Give it a try!',tutorialReadyText:'Move along the number line and check the finish.',tutorialWrong:'Nearly! Give it another try.',tutorialWrongDetail:'You can try as many times as you like. Use the arrows.',tutorialCorrect:'You got it! Nice move!',tutorialFinished:'Tutorial complete!',tutorialFinishedText:'You mastered all four moves. Head to Stage 1!',tutorialNext:'NEXT STEP →',tutorialNextStage:'GO TO STAGE 1 →',tutorialProgress:'TUTORIAL',tutorialScoreUnit:'/ 4 STEPS',tutorialScoreDetail:'Try again as often as you need.',tutorialScoreNote:'Use the operation and sign to choose a direction.',tutorialFooter:'This is practice. Mistakes are part of learning!'}};
 Object.assign(TXT.ja,{
- terms:'利用条件',
  legacy:'旧端末記録',combo:n=>`連続 ${n}`,stepDone:'その位置で正解。次の移動を考えよう。',retryMove:'出発点と移動の向きを確かめて、もう一度。',
  stepProgress:(i,n,start)=>`移動 ${i} / ${n} · 出発点：${start}`,
  challengeDesc:'初期60秒。誤答−5秒、3連続正解目から正解ごとに＋1秒。',
@@ -135,7 +216,6 @@ Object.assign(TXT.ja,{
  awardFoot:(stage,attempt)=>`${stage} ｜ 挑戦 ${attempt} 回目`
 });
 Object.assign(TXT.en,{
- terms:'Terms of Use',
  legacy:'Archived device record',combo:n=>`Streak ${n}`,stepDone:'That position is correct. Work out the next move.',retryMove:'Check your starting point and direction, then try again.',
  stepProgress:(i,n,start)=>`Move ${i} / ${n} · Start at ${start}`,
  challengeDesc:'Starts with 60s. A wrong answer costs 5s. From your third consecutive correct answer, each correct answer adds 1s.',
@@ -240,6 +320,27 @@ function startTutorial(){clearRunning();tutorial=true;tutorialStep=0;tutorialFee
 function startStage(i){clearRunning();tutorial=false;chapter=i;challenge=false;question=null;answers=[];streak=0;locked=false;expired=false;winPending=false;go('game');renderQuestion()}
 function startChallenge(){clearRunning();tutorial=false;chapter=-1;challenge=true;question=null;answers=[];streak=0;locked=false;expired=false;winPending=false;deadline=performance.now()+60000;go('game');renderQuestion();interval=setInterval(()=>{if(!expired&&performance.now()>=deadline)finishChallenge();else renderScore()},80)}
 function renderPips(){const p=$('pips');p.replaceChildren();if(tutorial){p.classList.remove('hide');for(let i=0;i<TUTORIAL_LENGTH;i++){const dot=document.createElement('i');dot.className=i<tutorialStep||(i===tutorialStep&&locked)?'good':i===tutorialStep?'current':'';p.append(dot)}return;}if(challenge){p.classList.add('hide');return;}p.classList.remove('hide');for(let i=0;i<COUNT;i++){const node=document.createElement('i');node.className=i<answers.length?(answers[i]?'good':'bad'):(i===answers.length?'current':'');p.appendChild(node)}}
+// Independent worked-example diagram; never modifies the player's position.
+function renderTutorialExample(step){
+ const root=$('tutorialExample');root.replaceChildren();
+ const a=step.first, term=step.steps[0], b=a+(term.op==='+'?term.n:-term.n), d=b-a, sign=Math.sign(d);
+ const x=n=>180+30*n, A=x(a), B=x(b), mid=(A+B)/2;
+ const desc=lang==='ja'?(d>0?'右へ':'左へ')+Math.abs(d):Math.abs(d)+(d>0?' right':' left');
+ $('tutorialExampleLabel').textContent=lang==='ja'?'動きの見本':'WORKED EXAMPLE';
+ root.setAttribute('aria-label',(lang==='ja'?'出発点 ':'Start ')+a+' / '+desc+' / '+b);
+ root.append(svg('line',{x1:18,y1:67,x2:342,y2:67,stroke:'#90adb7','stroke-width':2}));
+ for(let n=-5;n<=5;n++){
+  root.append(svg('line',{x1:x(n),x2:x(n),y1:61,y2:73,stroke:n===0?'#b7f3dd':'#9bb6bf','stroke-width':n===0?2:1.2}));
+  root.append(svg('text',{x:x(n),y:87,'text-anchor':'middle','font-size':12,'font-weight':n===0?900:600,fill:n===0?'#b7f3dd':'#d9e6e9'},fmt(n)));
+ }
+ root.append(svg('path',{d:`M${A} 59 Q${mid} 10 ${B} 59`,fill:'none',stroke:'#ffd987','stroke-width':3.4,'stroke-linecap':'round'}));
+ // Arrowhead points along the final tangent of the quadratic arc.
+ root.append(svg('polygon',{points:`${B},59 ${B-sign*11},53 ${B-sign*2},47`,fill:'#ffd987'}));
+ root.append(svg('text',{x:mid,y:20,'text-anchor':'middle','font-size':17,'font-weight':900,fill:'#ffd987'},desc));
+ root.append(svg('rect',{x:A-5,y:62,width:10,height:10,rx:2,fill:'#b7f3dd'}));
+ root.append(svg('circle',{cx:B,cy:67,r:8,fill:'#ffa96a',stroke:'#fff2db','stroke-width':1.8}));
+ root.append(svg('text',{x:A,y:103,'text-anchor':'middle','font-size':10,'font-weight':900,fill:'#b7f3dd'},'START'));
+}
 function renderQuestion(){if(expired)return;
 checkpoint=1;missed=false;feedback='ready';challengeAdjustment=null;
 if(tutorial){
@@ -248,7 +349,7 @@ if(tutorial){
  $('missionNum').textContent=`STEP ${tutorialStep+1} / ${TUTORIAL_LENGTH}`;
  $('progressHelp').textContent=t('tutorialProgress');renderEquation();
  $('startHint').textContent=t('startPoint',fmt(question.start));$('tutorialCoach').classList.remove('hide');
- $('tutorialPrompt').textContent=lang==='ja'?step.ja:step.en;$('tutorialDetail').textContent=lang==='ja'?step.detailJa:step.detailEn;
+ $('tutorialPrompt').textContent=lang==='ja'?step.ja:step.en;$('tutorialDetail').textContent=lang==='ja'?step.detailJa:step.detailEn;$('tutorialRule').textContent=lang==='ja'?step.ruleJa:step.ruleEn;$('tutorialRewrite').textContent=step.rewrite;$('tutorialRule').parentElement.dataset.direction=step.direction;renderTutorialExample(step);
  $('tutorialCount').textContent=`${tutorialStep+1} / ${TUTORIAL_LENGTH}`;
  $('tutorialFill').style.width=(tutorialStep*100/TUTORIAL_LENGTH)+'%';
  $('answerBox').className='answercard';$('answerIcon').textContent='✦';$('answerHeading').textContent=t('tutorialReady');
@@ -261,8 +362,24 @@ if(!challenge&&answers.length>=COUNT){finishStage();return;}const stage=challeng
 function renderScore(){if(tutorial){$('scoreHeading').textContent=t('tutorialProgress');$('scoreValue').textContent=tutorialStep+(locked?1:0);$('scoreUnit').textContent=t('tutorialScoreUnit');$('scoreDetail').textContent=t('tutorialScoreDetail');$('accuracyLabel').textContent=t('tutorialScoreNote');$('timeRemain').textContent='∞';return;}const n=answers.filter(Boolean).length,acc=grading();$('scoreHeading').textContent=challenge?'TIME ATTACK':t('progress');$('scoreValue').textContent=n;$('scoreUnit').textContent=challenge?' '+t('questionUnit'):t('scoreUnit');$('scoreDetail').textContent=challenge?t('challengeNote'):t('chapterNote');$('accuracyLabel').textContent=(challenge?t('combo',streak)+' · ':'')+t('accuracy',acc);$('timeRemain').textContent=challenge?`${Math.max(0,Math.ceil((deadline-performance.now())/1000))}s`:'∞';}
 function svg(tag,attrs,text){const el=document.createElementNS(NS,tag);Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,String(v)));if(text!==undefined)el.textContent=text;return el}
 function xp(n){return 40+(n+LIMIT)*920/(2*LIMIT)}
-function drawTicks(){const root=$('ticks');root.replaceChildren();for(let n=-LIMIT;n<=LIMIT;n++){root.append(svg('line',{x1:xp(n),x2:xp(n),y1:n===0?82:91,y2:n===0?128:119,class:'tline'}));if(n%3===0||n===0)root.append(svg('text',{x:xp(n),y:150,'text-anchor':'middle',class:'ticktxt'},fmt(n)))}}
-function drawTrack(show=false){const routes=$('routes'),markers=$('markers');routes.replaceChildren();markers.replaceChildren();if(!question)return;const q=question;routes.append(svg('line',{x1:xp(origin()),y1:105,x2:xp(guess),y2:105,class:'guessroute'}));markers.append(svg('circle',{cx:xp(origin()),cy:105,r:15,fill:'#81e7be',stroke:'#d6ffeb','stroke-width':2}));markers.append(svg('text',{x:xp(origin()),y:56,'text-anchor':'middle','font-size':13,'font-weight':900,fill:'#c9ffeb'},t('departure')));markers.append(svg('circle',{cx:xp(guess),cy:105,r:19,fill:'#ffa96a',stroke:'#fff2db','stroke-width':2.5}));
+function drawTicks(){const root=$('ticks');root.replaceChildren();for(let n=-LIMIT;n<=LIMIT;n++){root.append(svg('line',{x1:xp(n),x2:xp(n),y1:n===0?82:91,y2:n===0?128:119,class:'tline'}));if(n%3===0||n===0)root.append(svg('text',{x:xp(n),y:150,'text-anchor':'middle',class:n===0?'ticktxt zero-tick':'ticktxt'},fmt(n)))}}
+function drawTrack(show=false){const routes=$('routes'),markers=$('markers');routes.replaceChildren();markers.replaceChildren();if(!question)return;const q=question;routes.append(svg('line',{x1:xp(origin()),y1:105,x2:xp(guess),y2:105,class:'guessroute'}));// Keep the active departure visible even when the runner sits on it.
+const sx=xp(origin()), originalX=xp(q.path[0]);
+const startLabel=lang==='ja'?'START / 出発点':'START';
+const activeLabel=origin()===q.path[0]?startLabel:(lang==='ja'?'今回の出発点':'STEP START');
+const labelWidth=lang==='ja'?144:112;
+const lx=Math.max(labelWidth/2+5,Math.min(995-labelWidth/2,sx));
+if(origin()!==q.path[0]){
+ const ox=Math.max(35,Math.min(965,originalX));
+ markers.append(svg('path',{d:`M${originalX} 119 V135 H${ox}`,stroke:'#81e7be','stroke-width':2,fill:'none','stroke-dasharray':'4 3'}));
+ markers.append(svg('rect',{x:originalX-5,y:116,width:10,height:10,rx:2,fill:'#81e7be'}));
+ // The SVG title gives the original start without adding a second overlapping label.
+ const orig=markers.lastChild;orig.append(svg('title',{},startLabel+': '+fmt(q.path[0])));
+}
+markers.append(svg('path',{d:`M${lx} 40 L${sx} 63 V84`,stroke:'#81e7be','stroke-width':3,fill:'none','stroke-dasharray':'5 4'}));
+markers.append(svg('rect',{x:lx-labelWidth/2,y:12,width:labelWidth,height:28,rx:7,fill:'#b7f3dd'}));
+markers.append(svg('text',{x:lx,y:31,'text-anchor':'middle','font-size':15,'font-weight':900,fill:'#14343a'},activeLabel));
+markers.append(svg('rect',{x:sx-8,y:97,width:16,height:16,rx:2,fill:'#81e7be',stroke:'#d6ffeb','stroke-width':2}));markers.append(svg('circle',{cx:xp(guess),cy:105,r:19,fill:'#ffa96a',stroke:'#fff2db','stroke-width':2.5}));
 markers.append(svg('circle',{cx:xp(guess)-7,cy:101,r:2.3,fill:'#183d3a'}));
 markers.append(svg('circle',{cx:xp(guess)+7,cy:101,r:2.3,fill:'#183d3a'}));
 markers.append(svg('path',{d:`M${xp(guess)-9} 111 Q${xp(guess)} 119 ${xp(guess)+9} 111`,fill:'none',stroke:'#183d3a','stroke-width':2.8,'stroke-linecap':'round'}));
@@ -327,7 +444,7 @@ function award(stage){
 }
 function finishStage(){if(winPending)return;winPending=true;locked=true;const c=award(chapter);openAward(c);renderChapters()}
 function finishChallenge(){if(expired)return;expired=true;locked=true;clearRunning();const c=award(null);openAward(c);renderScore();}
-function retranslate(){document.documentElement.lang=lang;$('nameInput').placeholder=t('nameExample');$('certificate').setAttribute('aria-label',t('certHeading'));$('historyNav').textContent=t('historyNav');document.querySelectorAll('[data-i]').forEach(el=>{const v=t(el.dataset.i);if(el.dataset.i==='heroTitle'||el.dataset.i==='heroSub')el.innerHTML=v;else el.textContent=v});$('langNav').textContent=lang==='ja'?'EN':'日本語';$('awardLanguage').textContent=$('langNav').textContent;renderLessons();renderChapters();if(screen==='history')renderHistory();$('track').setAttribute('aria-label',t('lineTitle'));if(latest&&!$('certOverlay').classList.contains('hide'))openAward(latest);if(screen==='game'&&question){$('gameTitle').textContent=tutorial?t('tutorialTitle'):challenge?t('challengeTitle'):(lang==='ja'?STAGES[chapter].ja:STAGES[chapter].en);renderEquation();$('startHint').textContent=question.zero?t('fromZero'):t('startPoint',fmt(question.start));if(tutorial){const step=TUTORIAL[tutorialStep];$('tutorialPrompt').textContent=lang==='ja'?step.ja:step.en;$('tutorialDetail').textContent=lang==='ja'?step.detailJa:step.detailEn;$('gameFooter').textContent=t('tutorialFooter');$('answerHeading').textContent=tutorialFeedback==='good'?(tutorialStep===TUTORIAL_LENGTH-1?t('tutorialFinished'):t('tutorialCorrect')):tutorialFeedback==='bad'?t('tutorialWrong'):t('tutorialReady');$('answerMessage').textContent=tutorialFeedback==='good'?(tutorialStep===TUTORIAL_LENGTH-1?t('tutorialFinishedText'):t('result',fmt(question.target))):tutorialFeedback==='bad'?t('tutorialWrongDetail'):t('tutorialReadyText');$('answerDetail').textContent=tutorialFeedback==='good'?evaluation(question):(lang==='ja'?step.detailJa:step.detailEn);$('nextAnswer').textContent=tutorialStep===TUTORIAL_LENGTH-1?t('tutorialNextStage'):t('tutorialNext');}else{$('gameFooter').textContent=challenge?t('challengeFinal'):t('finalNote');if(!challenge&&checkpoint>1)$('startHint').textContent=t('stepProgress',checkpoint,question.path.length-1,fmt(origin()));renderFeedback();}renderScore();drawTrack(locked);}}
+function retranslate(){document.documentElement.lang=lang;$('nameInput').placeholder=t('nameExample');$('certificate').setAttribute('aria-label',t('certHeading'));$('historyNav').textContent=t('historyNav');document.querySelectorAll('[data-i]').forEach(el=>{const v=t(el.dataset.i);if(el.dataset.i==='heroTitle'||el.dataset.i==='heroSub')el.innerHTML=v;else el.textContent=v});$('langNav').textContent=lang==='ja'?'EN':'日本語';$('awardLanguage').textContent=$('langNav').textContent;renderLessons();renderChapters();if(screen==='history')renderHistory();$('track').setAttribute('aria-label',t('lineTitle'));if(latest&&!$('certOverlay').classList.contains('hide'))openAward(latest);if(screen==='game'&&question){$('gameTitle').textContent=tutorial?t('tutorialTitle'):challenge?t('challengeTitle'):(lang==='ja'?STAGES[chapter].ja:STAGES[chapter].en);renderEquation();$('startHint').textContent=question.zero?t('fromZero'):t('startPoint',fmt(question.start));if(tutorial){const step=TUTORIAL[tutorialStep];$('tutorialPrompt').textContent=lang==='ja'?step.ja:step.en;$('tutorialDetail').textContent=lang==='ja'?step.detailJa:step.detailEn;$('tutorialRule').textContent=lang==='ja'?step.ruleJa:step.ruleEn;$('tutorialRewrite').textContent=step.rewrite;$('tutorialRule').parentElement.dataset.direction=step.direction;renderTutorialExample(step);$('gameFooter').textContent=t('tutorialFooter');$('answerHeading').textContent=tutorialFeedback==='good'?(tutorialStep===TUTORIAL_LENGTH-1?t('tutorialFinished'):t('tutorialCorrect')):tutorialFeedback==='bad'?t('tutorialWrong'):t('tutorialReady');$('answerMessage').textContent=tutorialFeedback==='good'?(tutorialStep===TUTORIAL_LENGTH-1?t('tutorialFinishedText'):t('result',fmt(question.target))):tutorialFeedback==='bad'?t('tutorialWrongDetail'):t('tutorialReadyText');$('answerDetail').textContent=tutorialFeedback==='good'?evaluation(question):(lang==='ja'?step.detailJa:step.detailEn);$('nextAnswer').textContent=tutorialStep===TUTORIAL_LENGTH-1?t('tutorialNextStage'):t('tutorialNext');}else{$('gameFooter').textContent=challenge?t('challengeFinal'):t('finalNote');if(!challenge&&checkpoint>1)$('startHint').textContent=t('stepProgress',checkpoint,question.path.length-1,fmt(origin()));renderFeedback();}renderScore();drawTrack(locked);}}
 function renderHistory(){const grid=$('historyList');grid.replaceChildren();const owned=certificates;$('recordBest').textContent=t('best',best);$('graduate').classList.toggle('hide',!STAGES.every(stage=>records[stage.id]));$('deleteRecords').disabled=!owned.length&&!tutorialPassed&&!Object.keys(records).length;if(!owned.length){const p=document.createElement('p');p.className='empty';p.textContent=t('empty');grid.append(p);return}owned.forEach(c=>{const b=document.createElement('div');b.className='history';const small=document.createElement('small');small.textContent=c.date+(c.archived?' · '+t('legacy'):'');const title=document.createElement('b');title.textContent=c.type==='challenge'?t('challengeCert'):(c.perfect?t('perfectCert'):t('chapterCert'));const desc=document.createElement('div');desc.textContent=c.type==='challenge'?t('certScore',c.correct):`${STAGES.find(stage=>stage.id===c.stage)?.[lang]||''} · ${t('accuracy',c.accuracy)}`;const btn=document.createElement('button');btn.textContent=t('certAgain');btn.addEventListener('click',()=>openAward(c));b.append(small,title,desc,btn);grid.append(b)})}
 function openAward(c){latest=c;drawCertificate(c);$('certOverlay').classList.remove('hide');if(!$('certOverlay').open)$('certOverlay').showModal();$('certStat').textContent=c.type==='graduation'?t('graduation'):t('counts',c.correct,c.total-c.correct,c.total);$('certTime').textContent=c.date;}
 function pathRound(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
@@ -350,7 +467,7 @@ $('challengeHome').onclick=startChallenge;$('historyNav').onclick=()=>go('histor
 $('nameCancel').onclick=()=>{pending=null;$('nameOverlay').close();$('nameOverlay').classList.add('hide')};$('nameSave').onclick=()=>{const input=$('nameInput').value.replace(/[\u0000-\u001f\u007f\u202a-\u202e\u2066-\u2069]/g,'').trim().replace(/\s+/g,' ').slice(0,32);player=input;$('nameOverlay').close();$('nameOverlay').classList.add('hide');renderChapters();if(pending){const fn=pending;pending=null;fn()}else go('home')};$('nameInput').onkeydown=e=>{if(e.key==='Enter')$('nameSave').click()};
 $('langNav').onclick=()=>{lang=lang==='ja'?'en':'ja';retranslate()};document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{clearRunning();expired=true;go('home')});$('resetPosition').onclick=()=>question&&setGuess(origin());document.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>setGuess(guess+Number(b.dataset.move)));$('submitAnswer').onclick=submit;$('nextAnswer').onclick=next;
 $('track').onkeydown=e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();setGuess(e.key==='Home'?-LIMIT:e.key==='End'?LIMIT:guess+(e.key==='ArrowLeft'?-1:1))}};
-function pointerToGuess(e){const r=$('track').getBoundingClientRect();setGuess(Math.round(((e.clientX-r.left)*1000/r.width-40)/(920/(LIMIT*2)))-LIMIT)}
+function pointerToGuess(e){const axis=$('track'),matrix=axis.getScreenCTM();if(!matrix)return;const point=axis.createSVGPoint();point.x=e.clientX;point.y=e.clientY;const local=point.matrixTransform(matrix.inverse());setGuess(Math.round((local.x-40)/(920/(LIMIT*2)))-LIMIT)}
 $('track').addEventListener('pointerdown',e=>{if(!question||locked||expired)return;drag=true;$('track').setPointerCapture(e.pointerId);pointerToGuess(e)});$('track').addEventListener('pointermove',e=>{if(drag)pointerToGuess(e)});$('track').addEventListener('pointerup',()=>{drag=false;drawTrack(locked)});$('track').addEventListener('pointercancel',()=>{drag=false;drawTrack(locked)});
 $('certClose').onclick=()=>{ $('nameInput').value='';$('certOverlay').close();$('certOverlay').classList.add('hide');player='';if(screen==='game'&&(winPending||expired))go('home');};$('certSave').onclick=saveAward;
 $('awardName').onclick=()=>{pending=()=>openAward(latest);$('nameInput').value=player;$('nameOverlay').classList.remove('hide');$('nameOverlay').showModal();$('nameInput').focus();};
