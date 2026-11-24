@@ -24,11 +24,11 @@ MANATY LAB · 4.1.0
 
 ## バージョン履歴
 
-- 4.1.0 初回公開。段階ごとの移動と訂正、0の問題、銀・金・卒業証明書、無記名の記録と削除を追加。
+- 4.1.0。段階ごとの移動と訂正、0の問題、銀・金・卒業証明書、無記名の記録と削除を追加。
 - v4 ステージ0を追加。
 - v3 学校課題提出版。日英切替、ステージ賞状とPNG保存、60秒チャレンジを追加。
 
-## 利用条件・著作権
+## 利用条件・著作権（日本語）
 
 © 2026 MANATY LAB. All rights reserved.
 
@@ -40,7 +40,7 @@ MANATY LAB · 4.1.0
 
 権利者の許可なく、ソースコードや改変版を再配布すること、教材そのものを販売すること、有料コンテンツとして再配信することは禁止します。
 
-## Terms of Use
+## Terms of use and copyright (English)
 
 © 2026 MANATY LAB. All rights reserved.
 
@@ -51,3 +51,5 @@ You may share the public URL, post links in Google Classroom or similar services
 Except for third-party materials and similar content, copyright belongs to the rights holder of MANATY LAB. Individual rights and conditions for third-party materials must be respected. These terms do not restrict rights granted by applicable law or the GitHub Terms of Service.
 
 Without permission from the rights holder, redistribution of the source code or modified versions, sale of the resource itself, and redistribution as paid content are prohibited.
+
+[共通利用条件 / Common terms](https://manaty-bit.github.io/math-app-portal/terms.html)
