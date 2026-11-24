@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f5f5ee">
+<title>数直線ダッシュ — 正と負を、動かしてつかもう。</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;font-size:16px;color:#142c36;background:#f5f5ee;--ink:#142c36;--muted:#61777d;--dark:#142f37;--cream:#f5f5ee;--mint:#b7f3dd;--mintDeep:#166e58;--line:#dce5df;--gold:#edb64b;--red:#d9655f;--white:#fff;--shadow:0 15px 44px rgba(18,48,56,.075)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.44;cursor:default}button:focus-visible,input:focus-visible,[role=slider]:focus-visible{outline:3px solid #ed9b55;outline-offset:3px}button,.btnlink{-webkit-tap-highlight-color:transparent}a{color:inherit}.hide{display:none!important}.page{max-width:1200px;margin:0 auto;padding:21px 24px 50px}
+.topbar{display:flex;gap:14px;justify-content:space-between;align-items:center;margin-bottom:18px}.wordmark{display:flex;gap:9px;align-items:center;font-weight:1000;letter-spacing:-.035em;font-size:17px;white-space:nowrap}.mark{width:31px;height:31px;border:2px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-size:18px;font-weight:1000;line-height:1}.micro{font-size:10px;letter-spacing:.22em;color:var(--mintDeep);font-weight:950}.navright{display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end}.navbtn{border:1px solid #d3ddd6;background:#fff;border-radius:999px;font-weight:850;font-size:13px;padding:9px 13px;min-height:40px}.navbtn.dark{background:var(--dark);border-color:var(--dark);color:#fff}.avatar{background:#e4eee8;border:1px solid #cadbd2;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:850;white-space:nowrap}
+.hero{background:#dff1e6;overflow:hidden;border-radius:27px;display:grid;grid-template-columns:1.07fr .93fr;position:relative;min-height:372px;box-shadow:var(--shadow)}.heroleft{padding:43px 0 40px 44px;position:relative;z-index:1}.eyebrow{font-size:12px;font-weight:950;letter-spacing:.12em;color:#17684f}.hero h1{font-size:clamp(3rem,6vw,5rem);line-height:1.15;letter-spacing:-.085em;margin:13px 0 12px;color:#14343a;font-weight:1000}.hero p{font-size:clamp(15px,1.8vw,19px);line-height:1.8;color:#2a5457;margin:0 0 24px;font-weight:700}.heroart{position:relative;overflow:hidden;min-height:365px}.heroart::before{content:"";position:absolute;width:380px;height:380px;border:55px solid rgba(255,255,255,.42);border-radius:50%;left:4%;top:-75px}.heroart::after{content:"";position:absolute;width:180px;height:180px;border-radius:38px;transform:rotate(24deg);background:#f9dcaa;right:-48px;bottom:-80px}.heroart svg{width:118%;height:100%;position:absolute;right:-15px;top:0}.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.action{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:51px;border:2px solid var(--dark);background:var(--dark);color:#fff;border-radius:13px;padding:12px 21px;font-weight:1000;box-shadow:0 5px 0 #09212a;font-size:15px}.action:active{transform:translateY(3px);box-shadow:0 2px 0 #09212a}.action.soft{background:#fff;color:var(--dark);border-color:#fff;box-shadow:none}.action.outline{color:var(--dark);background:transparent;border-color:#cadad2;box-shadow:none}.action.gold{background:#ffd777;color:#273435;border-color:#ffd777;box-shadow:0 5px 0 #c09039}.action.gold:active{box-shadow:0 2px 0 #c09039}.action.full{width:100%}
+.sectionbar{display:flex;justify-content:space-between;gap:15px;align-items:end;margin:34px 0 15px}.sectionbar h2{font-size:23px;letter-spacing:-.05em;margin:4px 0 0}.sectionbar p{color:var(--muted);font-size:13px;margin:0;font-weight:700}.progresspill{background:#ebeee8;border:1px solid #d8e1da;padding:8px 13px;border-radius:999px;font-size:12px;font-weight:900}.chaptergrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.chcard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;position:relative;display:flex;flex-direction:column;min-height:206px;box-shadow:var(--shadow);transition:transform .16s,box-shadow .16s}.chcard:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(18,48,56,.12)}.chcard .num{font-size:38px;font-weight:1000;letter-spacing:-.08em;color:#bed8d0;line-height:1}.chcard .tag{font-weight:850;font-size:11px;color:var(--mintDeep);margin-top:12px}.chcard h3{margin:5px 0 8px;font-size:18px;line-height:1.5;letter-spacing:-.04em}.chcard p{margin:0;color:var(--muted);line-height:1.55;font-size:12px;flex:1}.chcard .foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-size:12px;font-weight:850}.goarrow{font-size:22px;color:#1a6b53}.chcard.done{border-color:#8ddab9;background:#f7fffa}.chcard.done .num{color:#61cba0}
+.challenge-banner{margin-top:18px;border-radius:20px;background:#193943;color:#fff;display:flex;justify-content:space-between;gap:22px;align-items:center;padding:23px 29px;position:relative;overflow:hidden}.challenge-banner::after{content:"60";font-size:145px;font-weight:1000;position:absolute;right:225px;top:-34px;opacity:.055;pointer-events:none}.challenge-banner h3{margin:0;font-size:20px}.challenge-banner p{margin:5px 0 0;color:#b8d6d5;font-size:13px}.challenge-banner button{border:none;border-radius:12px;background:#c7f1dd;color:#163b36;font-weight:1000;padding:12px 19px;min-height:47px;white-space:nowrap}
+.panel{border:1px solid var(--line);background:#fff;border-radius:22px;padding:26px;box-shadow:var(--shadow)}.back{border:0;background:transparent;font-weight:900;padding:10px 0;color:#45665d;display:inline-flex;align-items:center;gap:8px}.learnhead{padding:9px 0 20px}.learnhead h1{font-size:35px;letter-spacing:-.06em;margin:4px 0}.learnhead p{color:var(--muted);line-height:1.8;margin:0}.lesson-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:21px}.lesson{background:#fff;border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:var(--shadow);min-height:180px}.lesson .index{font-size:11px;letter-spacing:.12em;color:var(--mintDeep);font-weight:900}.lesson h3{font-size:19px;margin:11px 0}.lesson p{font-size:15px;line-height:1.8;color:#425a60;margin:8px 0}.example{background:#f1f5f0;border-radius:12px;padding:13px 15px;font-size:clamp(16px,2vw,20px);font-weight:950;display:inline-block}.lesson svg{width:100%;max-width:350px;display:block;margin-top:10px}
+.gamehead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:17px}.gamelabel{color:var(--mintDeep);font-weight:900;font-size:12px;letter-spacing:.1em}.gametitle{font-weight:1000;font-size:27px;letter-spacing:-.05em;margin-top:2px}.session{color:#516a6f;font-size:12px;font-weight:900;background:#e7eee8;padding:10px 13px;border-radius:999px}.gamegrid{display:grid;grid-template-columns:minmax(0,1fr) 275px;gap:16px}.gameleft{display:flex;flex-direction:column;gap:14px}.gameright{display:flex;flex-direction:column;gap:14px}.gamecard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:21px;box-shadow:var(--shadow)}.smallcaps{font-size:11px;color:#78918c;letter-spacing:.12em;font-weight:950}.progressline{display:flex;gap:6px;margin:13px 0 0}.progressline i{height:7px;flex:1;border-radius:99px;background:#ebede8}.progressline i.good{background:#46c99e}.progressline i.bad{background:#e9827b}.progressline i.current{background:#a4cac6}.equation{font-size:clamp(27px,4.4vw,48px);font-weight:1000;line-height:1.3;margin:18px 0 10px;letter-spacing:-.055em;color:#1c3942;word-wrap:break-word}.starting{border-radius:10px;background:#eef5f0;display:inline-block;padding:9px 12px;font-size:13px;font-weight:800;color:#42645a;line-height:1.6}.board{background:#162f3a;border-radius:18px;padding:18px 14px 12px;color:#fff;overflow:hidden}.boardtop{display:flex;justify-content:space-between;gap:9px;align-items:center}.boardtop b{font-size:13px}.boardtop span{font-size:12px;color:#c4d5d8}.trackscroll{overflow-x:auto;scrollbar-width:thin;scrollbar-color:#8ca7ae #203c49}#track{width:100%;min-width:700px;height:auto;touch-action:none;display:block;margin-top:12px;user-select:none;cursor:crosshair}.ticktxt{font:14px system-ui,sans-serif;fill:#9ab5bf}.tline{stroke:#547784;stroke-width:1.5}.axisline{stroke:#8ca8ae;stroke-width:3}.route{stroke:#84e7bd;stroke-width:7;stroke-linecap:round}.guessroute{stroke:#ffd987;stroke-width:7;stroke-linecap:round;opacity:.75}.boardlegend{display:flex;gap:15px;flex-wrap:wrap;margin-top:5px;font-size:11px;font-weight:800;color:#cadce0}.legenddot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:5px}.legenddot.st{background:#81e7be}.legenddot.pr{background:#ffd17a}.legenddot.cr{background:#9bbcfc}.pad{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:15px}.move{background:#eff3ef;border:1px solid #d5e2dd;border-radius:12px;color:#123b46;font-size:16px;font-weight:1000;min-height:57px}.move:hover{background:#def1e8}.move.neg{background:#eaf0f5}.move:active{transform:scale(.96)}.controlrow{display:flex;justify-content:space-between;gap:11px;align-items:center;margin-top:11px}.controlrow small{color:#70898b;font-size:12px}.textbtn{border:0;background:transparent;padding:8px 0;color:#36725e;font-weight:850;font-size:12px}.answercard{background:#eaf3f0;border:1px solid #d4e4dc;border-radius:22px;padding:21px;flex:1;min-height:235px}.answercard.good{background:#e3f5e9;border-color:#a2dfb9}.answercard.bad{background:#fff0e9;border-color:#f1c4b3}.answercard h3{font-size:18px;margin:8px 0 8px}.answercard p{color:#526b66;font-size:13px;line-height:1.7;margin:5px 0}.answercard .detail{font-size:12px;margin-top:10px;color:#3a6660}.answercard .iconround{width:42px;height:42px;border-radius:14px;background:#fff;display:grid;place-items:center;font-size:22px}.answercard.good .iconround{background:#b8f0ca}.answercard.bad .iconround{background:#ffd1b8}.scorecard{background:#173942;color:#fff;border-radius:22px;padding:20px}.scoretop{font-size:11px;letter-spacing:.11em;font-weight:900;color:#a9d9cf}.scorenumbers{display:flex;align-items:baseline;gap:5px;margin:9px 0}.scorenumbers strong{font-size:52px;line-height:1;font-weight:1000;font-variant-numeric:tabular-nums}.scorenumbers span{font-size:14px;color:#b8d7d2}.scorecard p{font-size:12px;color:#bdd7d6;margin:7px 0 0;line-height:1.5}.scorecard .mini{display:flex;justify-content:space-between;border-top:1px solid #315960;padding-top:13px;margin-top:14px;font-size:12px;font-weight:850}.result-action{display:flex;flex-direction:column;gap:10px}.result-action .action{width:100%}.result-action .action.outline{background:#fff}.hintfooter{font-size:12px;color:#718985;line-height:1.6}
+.overlay{position:fixed;inset:0;background:#0e242bdc;z-index:30;display:grid;place-items:center;padding:16px;backdrop-filter:blur(5px)}.modal{width:min(880px,100%);max-height:calc(100dvh - 30px);overflow:auto;background:#f5f5ee;border-radius:25px;padding:24px;box-shadow:0 30px 80px #0006}.modal.sm{max-width:460px}.modal h2{margin:2px 0 8px;font-size:25px;letter-spacing:-.04em}.modal p{font-size:13px;color:#5b7377;line-height:1.75}.input{height:54px;border:2px solid #cbd9d1;border-radius:13px;background:#fff;width:100%;padding:0 15px;font-size:17px;color:var(--ink);margin:12px 0 6px}.modalaction{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:17px}.canvasbox{background:#d6ded6;border-radius:17px;padding:9px;overflow:auto;max-height:60dvh;display:flex;justify-content:center}.canvasbox canvas{width:min(100%,720px);height:auto;max-height:none;display:block;box-shadow:0 8px 24px #1c383729}.certdetail{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:#4e6668;margin-top:12px}.certdetail strong{color:#183d45}.historygrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:13px}.history{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px}.history small{color:var(--muted)}.history b{display:block;margin:7px 0}.history button{border:1px solid #cbdad2;border-radius:10px;background:#edf5ef;font-weight:900;padding:10px 14px;margin-top:12px}.empty{color:#69807b;font-size:14px;line-height:1.65}.footer{padding:27px 0;color:#84948a;font-size:11px;display:flex;justify-content:space-between;gap:10px}.footer strong{color:#496e67}
+@media(max-width:980px){.chaptergrid{grid-template-columns:repeat(2,1fr)}.gamegrid{grid-template-columns:1fr}.gameright{display:grid;grid-template-columns:1fr 1fr}.result-action{grid-column:1/-1;flex-direction:row}.result-action .action{flex:1}.heroart svg{right:-30px}}
+@media(max-width:660px){.page{padding:14px 12px 30px}.hero{grid-template-columns:1fr}.heroleft{padding:27px 24px 16px}.hero h1{font-size:clamp(2.8rem,13vw,4.7rem)}.heroart{min-height:178px}.heroart svg{width:102%;height:240px;right:-12px;top:-35px}.topbar{align-items:flex-start}.topbar .wordmark{font-size:14px}.navright{gap:6px}.navbtn{font-size:12px;padding:8px 10px}.avatar{max-width:128px;overflow:hidden;text-overflow:ellipsis}.chaptergrid{gap:9px}.chcard{padding:14px;min-height:192px;border-radius:16px}.chcard .num{font-size:30px}.chcard h3{font-size:16px}.chcard p{font-size:11px}.challenge-banner{padding:20px;flex-wrap:wrap}.challenge-banner::after{right:10px}.lesson-grid,.gameright{grid-template-columns:1fr}.panel{padding:18px}.gametitle{font-size:22px}.gamecard{padding:16px}.board{padding:12px 7px}.pad{gap:6px}.move{min-height:53px;font-size:14px}.result-action{flex-direction:column;order:-2}.answercard{order:-1;min-height:0;padding:15px}.scorecard{order:1;padding:14px}.scorenumbers strong{font-size:34px}.scorenumbers{margin:3px 0}.scorecard p{display:none}.scorecard .mini{margin-top:8px;padding-top:8px}body[data-screen=game] #historyNav,body[data-screen=game] #nameNav{display:none}.modal{padding:16px}.canvasbox{max-height:53dvh}.sectionbar h2{font-size:21px}.footer{flex-wrap:wrap}}
+@media(max-width:390px){.navright{gap:4px}.avatar{display:none}.wordmark{font-size:13px}.navbtn{padding:8px}.hero h1{font-size:46px}.chaptergrid{grid-template-columns:1fr 1fr}.chcard{min-height:193px}.chcard h3{font-size:15px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Prevent wide SVG content from stretching the mobile viewport. */
+.gamegrid,.gameleft,.gameright,.gamecard,.board,.trackscroll{min-width:0;max-width:100%}
+@media(max-width:980px){.gamegrid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:660px){.gameright{grid-template-columns:minmax(0,1fr)}}
+/* STAGE 00 — a calm, friendly first-time experience */
+.tutorial-invite{display:flex;align-items:center;gap:20px;padding:19px 23px;border-radius:21px;background:linear-gradient(110deg,#d8f4e7,#f6f4e6);border:1px solid #b9e6d4;box-shadow:var(--shadow);margin-bottom:15px}
+.tutorial-face{width:73px;height:73px;flex:none;display:grid;place-items:center}
+.tutorial-face svg{width:100%;height:100%}
+.tutorial-copy{flex:1;min-width:0}.tutorial-copy .eyebrow{font-size:11px;color:#18705b}.tutorial-copy h3{font-size:21px;letter-spacing:-.04em;margin:4px 0}.tutorial-copy p{font-size:13px;line-height:1.6;color:#426860;margin:0}.tutorial-invite .action{min-height:47px;flex:none}
+.tutorial-invite.done{background:linear-gradient(110deg,#e7f8ee,#f7f8ec)}
+.tutorial-progress{background:#e3f7ec;border:1px solid #a9dcc7;border-radius:19px;padding:16px 21px;margin-bottom:16px;display:flex;gap:14px;align-items:center;box-shadow:var(--shadow)}
+.tutorial-progress .tutorial-symbol{font-size:30px;background:#fff;border-radius:17px;width:55px;height:55px;display:grid;place-items:center;flex:none}
+.tutorial-progress .tutorial-words{flex:1}.tutorial-progress strong{display:block;font-size:17px;font-weight:1000;color:#194b45}.tutorial-progress p{margin:4px 0 0;font-size:14px;color:#3d6d60;line-height:1.55;font-weight:700}
+.tutorial-progress .tutorial-counter{font-size:12px;font-weight:1000;color:#176b56;background:#fff;border-radius:100px;padding:8px 11px;white-space:nowrap}
+.tutorial-progress .tut-track{height:6px;border-radius:20px;background:#bcddcd;overflow:hidden;margin-top:10px}.tutorial-progress .tut-fill{display:block;height:100%;background:#259b75;width:0;transition:width .18s}
+.tutorial-finished{color:#176950;font-weight:1000}
+@media(max-width:660px){.tutorial-invite{padding:15px;gap:12px;flex-wrap:wrap}.tutorial-face{width:57px;height:57px}.tutorial-copy{flex-basis:calc(100% - 70px)}.tutorial-invite .action{width:100%;min-height:45px}.tutorial-copy h3{font-size:18px}.tutorial-progress{padding:12px;gap:10px}.tutorial-progress .tutorial-symbol{width:42px;height:42px;font-size:23px}.tutorial-progress strong{font-size:15px}.tutorial-progress p{font-size:13px}.tutorial-progress .tutorial-counter{padding:6px 8px}.tutorial-progress .tut-track{margin-top:8px}}
+.equation,.lesson .example{font-family:"STIX Two Math","Cambria Math","Times New Roman",serif;letter-spacing:normal;font-variant-numeric:lining-nums tabular-nums}
+dialog.overlay{border:0;margin:0;max-width:none;max-height:none;width:100%;height:100%;color:inherit}dialog.overlay::backdrop{background:transparent}
+.equation mark{background:#e3f1e8;color:inherit;border-radius:.16em;white-space:pre-wrap}.equation span{white-space:pre-wrap}.modalaction{flex-wrap:wrap}.session{max-width:35%;overflow-wrap:anywhere}
+@media(min-width:981px) and (max-height:820px){
+ .gamegrid{align-items:start}.gameright{gap:9px}.answercard{min-height:0;padding:14px}.scorecard{padding:14px}.scorenumbers strong{font-size:38px}
+ .gamehead{margin-bottom:10px}.tutorial-progress{padding:10px 16px;margin-bottom:10px}
+ .equation{margin:8px 0 5px}.gamecard{padding:12px 16px}
+}
+</style>
+</head>
+<body><div class="page">
+<header class="topbar">
+ <div class="wordmark"><div class="mark">±</div><span>NUMBER LINE DASH</span></div>
+ <div class="navright"><button class="navbtn" id="historyNav">賞状の記録</button><button class="navbtn" id="langNav">EN</button></div>
+</header>
+<main>
+ <section id="homeScreen">
+  <div class="hero"><div class="heroleft"><div class="eyebrow" data-i="homeEyebrow">MATH GAME · 01</div><h1 data-i="heroTitle">数直線<br>ダッシュ<span style="color:#ff9759">。</span></h1><p data-i="heroSub">正と負を、動かしてつかもう。<br>10問ずつのミッションをクリアして、賞状を手に入れよう。</p><div class="actions"><button class="action" id="startHome"><span data-i="start">プレイする</span> <span>↗</span></button><button class="action soft" id="learnHome" data-i="learnBtn">基本を学ぶ</button></div></div>
+   <div class="heroart" aria-hidden="true"><svg viewBox="0 0 530 390" xmlns="http://www.w3.org/2000/svg"><circle cx="260" cy="205" r="160" fill="#c8e7dd"/><path d="M10 257H530" stroke="#25564f" stroke-width="6" stroke-linecap="round"/><g font-size="21" text-anchor="middle" font-weight="900" fill="#2f635b"><text x="55" y="292">−6</text><text x="130" y="292">−4</text><text x="205" y="292">−2</text><text x="280" y="292">0</text><text x="355" y="292">+2</text><text x="430" y="292">+4</text><text x="505" y="292">+6</text></g><g stroke="#2f635b" stroke-width="4"><path d="M55 242v30M130 242v30M205 242v30M280 238v40M355 242v30M430 242v30M505 242v30"/></g><path d="M280 200C310 140 390 142 430 205" fill="none" stroke="#fa985c" stroke-width="9" stroke-dasharray="12 14" stroke-linecap="round"/><path d="M419 184l21 23-32 3" fill="none" stroke="#fa985c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="205" cy="257" r="24" fill="#ffa66b" stroke="#1c4548" stroke-width="5"/><circle cx="195" cy="251" r="3" fill="#152e30"/><circle cx="213" cy="251" r="3" fill="#152e30"/><path d="M196 264q10 8 19 0" fill="none" stroke="#152e30" stroke-width="3" stroke-linecap="round"/><path d="M204 235l-11-16m13 16 12-16" stroke="#152e30" stroke-width="4" stroke-linecap="round"/><rect x="375" y="74" width="105" height="64" rx="18" fill="#fff" transform="rotate(9 375 74)"/><text x="425" y="116" font-size="30" fill="#1c5148" font-weight="1000" text-anchor="middle">−2</text><path d="M115 150q80-40 160 0" stroke="#86c6b2" fill="none" stroke-width="3" stroke-dasharray="4 10"/></svg></div></div>
+  <div class="sectionbar" id="stageArea"><div><span class="eyebrow" data-i="chapterEyebrow">STAGE SELECT</span><h2 data-i="chooseTitle">4つのステージに挑戦</h2></div><div class="progresspill" id="completedPill">0 / 4 修了</div></div>
+  <div class="tutorial-invite" id="tutorialInvite">
+    <div class="tutorial-face" aria-hidden="true"><svg viewBox="0 0 82 82"><circle cx="41" cy="45" r="30" fill="#ffa96a" stroke="#204d4b" stroke-width="5"/><path d="M39 15 29 2M43 15 53 2" fill="none" stroke="#204d4b" stroke-width="5" stroke-linecap="round"/><circle cx="30" cy="39" r="3.3" fill="#204d4b"/><circle cx="52" cy="39" r="3.3" fill="#204d4b"/><path d="M29 53q12 14 25 0" fill="none" stroke="#204d4b" stroke-width="4" stroke-linecap="round"/></svg></div>
+    <div class="tutorial-copy"><div class="eyebrow">STAGE 00 · TUTORIAL</div><h3 data-i="tutorialCardTitle">はじめての数直線</h3><p data-i="tutorialCardText">笑顔のランナーと4つの練習。左右への動かし方を覚えよう！</p></div>
+    <button type="button" class="action" id="tutorialHome" data-i="tutorialCardButton">練習してみる ↗</button>
+  </div>
+  <div class="chaptergrid" id="chapterGrid"></div>
+  <div class="challenge-banner"><div><div class="micro" style="color:#7bdfbf" data-i="extra">EXTRA MISSION</div><h3 data-i="challengeTitle">60秒チャレンジ</h3><p data-i="challengeDesc">時間内に何問解ける？ 記録入りの賞状に挑戦しよう。</p></div><button id="challengeHome" data-i="challengeGo">挑戦する ↗</button></div>
+ </section>
+ <section class="hide" id="learnScreen"><button class="back" data-back="home" data-i="back">← タイトルへ</button><div class="learnhead"><span class="eyebrow" data-i="learnEyebrow">READY TO PLAY?</span><h1 data-i="learnTitle">まずは、考え方をつかもう。</h1><p data-i="learnSub">数直線の動きをイメージできれば、負の数の計算はもっとわかりやすくなる。</p></div><div class="lesson-grid" id="lessons"></div><button class="action" id="learnContinue" data-i="selectStages">ステージを選ぶ →</button></section>
+ <section class="hide" id="historyScreen"><button class="back" data-back="home" data-i="back">← タイトルへ</button><div class="learnhead"><span class="eyebrow">MY AWARDS</span><h1 data-i="awardHistory">これまでの賞状</h1><p data-i="historySub">保存した賞状をもう一度表示できます。</p></div><p id="recordBest"></p><div class="actions"><button class="action hide" id="graduate" data-i="graduation"></button><button class="action outline" id="deleteRecords" data-i="deleteRecords"></button></div><div class="historygrid" id="historyList"></div></section>
+ <section class="hide" id="gameScreen">
+  <button class="back" data-back="home" data-i="back">← タイトルへ</button>
+  <div class="gamehead"><div><div class="gamelabel" id="gameEyebrow">STAGE 01 / ADDITION</div><div class="gametitle" id="gameTitle">正負の数の足し算</div></div></div>
+   <div class="tutorial-progress hide" id="tutorialCoach" aria-live="polite">
+     <div class="tutorial-symbol" aria-hidden="true">☀</div>
+     <div class="tutorial-words"><strong id="tutorialPrompt">右へ3進んでみよう！</strong><p id="tutorialDetail">数直線のボタンを使ってね。</p><div class="tut-track"><span class="tut-fill" id="tutorialFill"></span></div></div>
+     <span class="tutorial-counter" id="tutorialCount">1 / 4</span>
+   </div>
+   <div class="gamegrid">
+   <div class="gameleft">
+    <div class="gamecard"><div style="display:flex;justify-content:space-between;align-items:center;gap:9px"><div class="smallcaps" id="missionNum">MISSION 01 / 10</div><div class="smallcaps" id="progressHelp">KEEP GOING!</div></div><div class="progressline" id="pips"></div><div class="equation" id="equation">6 + (−2) = ?</div><div class="starting" id="startHint">出発点：6</div></div>
+    <div class="gamecard"><div class="board"><div class="boardtop"><b data-i="lineTitle">数字の道</b><span id="currentPosition">いまの位置：6</span></div><div class="trackscroll" id="trackscroll"><svg id="track" viewBox="0 0 1000 196" role="slider" aria-label="答えの位置" aria-valuemin="-15" aria-valuemax="15" aria-valuenow="0" tabindex="0"><g id="ticks"></g><line class="axisline" x1="40" y1="105" x2="960" y2="105"/><g id="routes"></g><g id="markers"></g><rect x="20" y="35" width="960" height="128" fill="transparent"/></svg></div><div class="boardlegend"><span><i class="legenddot st"></i><span data-i="departure">出発</span></span><span><i class="legenddot pr"></i><span data-i="prediction">予想</span></span><span><i class="legenddot cr"></i><span data-i="answer">答え</span></span></div></div>
+     <div class="pad"><button class="move neg" data-move="-3">◀ 3</button><button class="move neg" data-move="-1">◀ 1</button><button class="move" data-move="1">1 ▶</button><button class="move" data-move="3">3 ▶</button></div><div class="controlrow"><small data-i="controlHint">数直線をタップしても移動できます</small><button class="textbtn" id="resetPosition" data-i="reset">↺ 出発点に戻す</button></div>
+    </div>
+   </div>
+   <aside class="gameright"><div class="scorecard"><div class="scoretop" id="scoreHeading">PROGRESS</div><div class="scorenumbers"><strong id="scoreValue">0</strong><span id="scoreUnit">/ 10 正解</span></div><p id="scoreDetail">間違えた問題も最後まで解こう。</p><div class="mini"><span id="accuracyLabel">正答率 0%</span><span id="timeRemain">∞</span></div></div>
+    <div class="answercard" id="answerBox" aria-live="polite"><div class="iconround" id="answerIcon">✦</div><h3 id="answerHeading">答えを予想しよう</h3><p id="answerMessage">数直線を動かして「これで決定！」を押してね。</p><p class="detail" id="answerDetail">計算の動きを目で確認しよう。</p></div><div class="result-action"><button class="action gold" id="submitAnswer" data-i="submit">これで決定！ →</button><button class="action outline hide" id="nextAnswer" data-i="next">次の問題へ →</button></div><div class="hintfooter" id="gameFooter">最後までクリアすると、提出用の賞状がもらえるよ。</div>
+   </aside>
+  </div>
+ </section>
+</main>
+<footer class="footer"><strong>NUMBER LINE DASH · MATH GAME 01</strong><span data-i="footer">正しく考えた、その一歩が力になる。</span><small style="display:block">© 2026 MANATY LAB · <a href="https://manaty-bit.github.io/math-app-portal/terms.html" data-i="terms">利用条件</a></small></footer>
+</div>
+<dialog class="overlay hide" id="nameOverlay" aria-labelledby="nameModalTitle"><div class="modal sm"><span class="eyebrow">LET'S GET STARTED</span><h2 id="nameModalTitle" data-i="namePrompt">プレイヤー名を教えてね</h2><p data-i="nameDesc">賞状に表示される名前を入力してください。名前は後から変更できます。</p><label for="nameInput" class="smallcaps" data-i="playerName">プレイヤー名</label><input class="input" id="nameInput" maxlength="32" autocomplete="off" data-placeholder="nameExample"><div class="modalaction"><button class="action outline" id="nameCancel" data-i="cancel">キャンセル</button><button class="action" id="nameSave" data-i="applyName">はじめる →</button></div></div></dialog>
+<dialog class="overlay hide" id="certOverlay" aria-labelledby="certModalTitle"><div class="modal"><span class="eyebrow">MISSION COMPLETE</span><h2 id="certModalTitle" data-i="certHeading">賞状が届きました！</h2><p data-i="certText">保存した画像を課題として提出できます。</p><div class="canvasbox"><canvas id="certificate" width="1440" height="1018" aria-label="賞状画像"></canvas></div><div class="certdetail"><span id="certStat"></span><span id="certTime"></span></div><div class="modalaction"><button class="action outline" id="certClose" data-i="close">とじる</button><button class="action outline" id="awardLanguage">EN</button><button class="action outline" id="awardName" data-i="nameNav">名前を入力</button><button class="action" id="certSave" data-i="saveImg">画像を保存する ↓</button></div></div></dialog>
+<script>
+(function(root){
+'use strict';
+const LIMIT=15;
+const delta=s=>s.op==='+'?s.n:-s.n,rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,choose=a=>a[rand(0,a.length-1)];
+function makeQ(first,steps,zero=false){const path=[zero?0:first];if(zero)path.push(first);let v=first;for(const s of steps){v+=delta(s);path.push(v)}return {first,steps,zero,path,target:v,start:zero?0:first};}
+function generate(stage,k){for(let tries=0;tries<3000;tries++){let first=rand(-8,8), count=stage===3?3:stage===2&&k>=6?2:1;const zero=stage===3||(stage===2&&k>=6);let steps=[];for(let j=0;j<count;j++){let n=rand(-7,7);steps.push({op:stage===0?'+':stage===1?'-':choose(['+','-']),n});}const q=makeQ(first,steps,zero);if(q.path.every(v=>Math.abs(v)<=LIMIT))return q;}throw Error('Generation failed');}
+root.NumberLineDashEngine={LIMIT,delta,makeQ,generate};
+})(window);
+</script>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id), NS='http://www.w3.org/2000/svg',STORAGE='number-line-dash-v3',COUNT=10;
+const TUTORIAL=[
+ {first:0,steps:[{op:'+',n:3}],ja:'0から右へ3進もう！',en:'Start at 0. Move right 3!',detailJa:'「3 ▶」を押して、+3の位置を見つけよう。',detailEn:'Tap “3 ▶” and find +3.'},
+ {first:0,steps:[{op:'+',n:-2}],ja:'今度は左へ2進もう！',en:'Now move left 2!',detailJa:'「◀ 1」を2回押して、−2を目指そう。',detailEn:'Tap “◀ 1” twice to reach −2.'},
+ {first:4,steps:[{op:'+',n:-3}],ja:'4から左へ3進もう！',en:'Start at 4. Move left 3!',detailJa:'出発点はいつも0とは限らないよ。4から1へ。',detailEn:'You do not always start at zero. Move from 4 to 1.'},
+ {first:2,steps:[{op:'-',n:-2}],ja:'マイナスを引くと、どっち？',en:'Which way when subtracting a negative?',detailJa:'−2を足すと左へ2。−2を引くと、その反対の右へ2進むよ。',detailEn:'Adding −2 moves left 2. Subtracting −2 reverses that move: go right 2.'}
+];
+const TUTORIAL_LENGTH=TUTORIAL.length;
+const STAGES=[
+{id:'addition',ja:'正負の数の足し算',en:'Adding signed numbers',hintJa:'まずは「足す」向きをつかもう',hintEn:'Discover which way addition moves',capJa:'基本',capEn:'BASICS'},
+{id:'subtraction',ja:'正負の数の引き算',en:'Subtracting signed numbers',hintJa:'マイナスを引くと、どこへ進む？',hintEn:'Where does subtracting a negative take you?',capJa:'向きに注目',capEn:'DIRECTION'},
+{id:'mixed',ja:'正負の数の足し算・引き算',en:'Add & subtract',hintJa:'記号を見分けて、正しく動かそう',hintEn:'Watch both signs and choose your route',capJa:'応用',capEn:'APPLY'},
+{id:'complex',ja:'正負の数の複合問題',en:'Multi-step expressions',hintJa:'0から出発して式全体をたどろう',hintEn:'Trace every term starting at zero',capJa:'チャレンジ',capEn:'CHALLENGE'}
+];
+const TXT={ja:{homeEyebrow:'MATH GAME · 01',heroTitle:'数直線<br>ダッシュ<span style="color:#ff9759">。</span>',heroSub:'正と負を、動かしてつかもう。<br>10問ずつのミッションをクリアして、賞状を手に入れよう。',start:'プレイする',learnBtn:'基本を学ぶ',chapterEyebrow:'STAGE SELECT',chooseTitle:'4つのステージに挑戦',extra:'EXTRA MISSION',challengeTitle:'60秒チャレンジ',challengeDesc:'時間内に何問解ける？ 記録入りの賞状に挑戦しよう。',challengeGo:'挑戦する ↗',back:'← タイトルへ',learnEyebrow:'READY TO PLAY?',learnTitle:'まずは、考え方をつかもう。',learnSub:'数直線の動きをイメージできれば、負の数の計算はもっとわかりやすくなる。',selectStages:'ステージを選ぶ →',awardHistory:'これまでの賞状',historySub:'保存した賞状をもう一度表示できます。',lineTitle:'数字の道',departure:'出発',prediction:'予想',answer:'答え',controlHint:'数直線をタップしても移動できます',reset:'↺ 出発点に戻す',submit:'これで決定！ →',next:'次の問題へ →',footer:'正しく考えた、その一歩が力になる。',namePrompt:'プレイヤー名を教えてね',nameDesc:'賞状に表示される名前を入力してください。名前は後から変更できます。',playerName:'プレイヤー名',cancel:'キャンセル',letsGo:'はじめる →',certHeading:'賞状が届きました！',certText:'保存した画像を課題として提出できます。',close:'とじる',saveImg:'画像を保存する ↓',nameNav:'名前を入力',historyNav:'賞状の記録',done:'修了',newPlay:'はじめる',retry:'もう一度',chapShort:'STAGE',pComplete:n=>`${n} / 4 修了`,startPoint:n=>`出発点：${n}`,fromZero:'0から出発！ 最初の数も、0からの移動として考えよう。',pos:n=>`いまの位置：${n}`,correct:'正解！ いい動きだね',incorrect:'おしい！ 動きを確認しよう',begin:'答えを予想しよう',beginDesc:'数直線を動かして「これで決定！」を押してね。',beginDetail:'計算の動きを目で確認しよう。',result:n=>`答えは ${n}。`,chapterNote:'間違えた問題も最後まで解こう。',challengeNote:'集中して正解を積み重ねよう。',finalNote:'最後までクリアすると、提出用の賞状がもらえるよ。',challengeFinal:'終了すると記録の賞状が出ます。',progress:'PROGRESS',scoreUnit:'/ 10 正解',questionUnit:'問正解',accuracy:n=>`正答率 ${n}%`,bonus:'3連続正解 +2秒',penalty:'不正解 −5秒',nextResult:'結果と賞状を見る →',certAgain:'賞状を見る',empty:'まだ賞状がありません。ステージをクリアしてみよう！',chapterCert:'学習修了証',perfectCert:'パーフェクト賞状',challengeCert:'60秒チャレンジ賞状',certAward:'すべての問題を正解したことをたたえます。',certFinish:'このステージの学習を修了しました。',certTimer:'60秒の挑戦をやり切りました。',certCount:'正解数',certRate:'正答率',certDate:'発行日時',certPlayer:'プレイヤー',certNo:'提出番号',certFraction:(a,b)=>`${a} / ${b} 問正解`,certScore:n=>`${n} 問正解`,introLearn:'基本学習まとめ',tutorialCardTitle:'はじめての数直線',tutorialCardText:'笑顔のランナーと4つの練習。左右への動かし方を覚えよう！',tutorialCardButton:'練習してみる ↗',tutorialDoneButton:'もう一度練習 ↗',tutorialCardDone:'チュートリアルクリア！ いつでもやり直せるよ。',tutorialTitle:'はじめての数直線',tutorialReady:'いっしょに動かそう！',tutorialReadyText:'数直線を動かして、正しい場所で決定しよう。',tutorialWrong:'もう少し！ もう一回やってみよう',tutorialWrongDetail:'間違えても大丈夫。矢印を押してやり直せるよ。',tutorialCorrect:'できた！ いい感じ！',tutorialFinished:'チュートリアルクリア！',tutorialFinishedText:'4つの動かし方を覚えたね。ステージ1へ進もう！',tutorialNext:'次の練習へ →',tutorialNextStage:'ステージ1へ進む →',tutorialProgress:'TUTORIAL',tutorialScoreUnit:'/ 4 STEP',tutorialScoreDetail:'間違えても何度でもやり直せるよ。',tutorialScoreNote:'まずは左右の動きを覚えよう。',tutorialFooter:'ここは練習だから、何度間違えても大丈夫！'},
+en:{homeEyebrow:'MATH GAME · 01',heroTitle:'NUMBER LINE<br>DASH<span style="color:#ff9759">.</span>',heroSub:'Move numbers. Understand signs.<br>Clear ten missions per stage to earn an award.',start:'PLAY NOW',learnBtn:'LEARN THE RULES',chapterEyebrow:'STAGE SELECT',chooseTitle:'Four stages. Four skills.',extra:'EXTRA MISSION',challengeTitle:'60-SECOND CHALLENGE',challengeDesc:'How many answers in one minute? Win your score certificate.',challengeGo:'PLAY ↗',back:'← Back to title',learnEyebrow:'READY TO PLAY?',learnTitle:'See how signed numbers move.',learnSub:'Picture the movement, and every calculation becomes easier to follow.',selectStages:'Choose a stage →',awardHistory:'Your certificates',historySub:'Open and save previously earned certificates.',lineTitle:'NUMBER LINE',departure:'Start',prediction:'Guess',answer:'Answer',controlHint:'You can also tap or drag the number line.',reset:'↺ Return to start',submit:'CHECK ANSWER →',next:'NEXT QUESTION →',footer:'Every move helps you understand.',namePrompt:'What is your player name?',nameDesc:'This name appears on your award. You can change it later.',playerName:'Player name',cancel:'Cancel',letsGo:'START →',certHeading:'You earned a certificate!',certText:'Save this image and submit it as your assignment.',close:'CLOSE',saveImg:'SAVE IMAGE ↓',nameNav:'Enter name',historyNav:'My awards',done:'Completed',newPlay:'PLAY',retry:'REPLAY',chapShort:'STAGE',pComplete:n=>`${n} / 4 completed`,startPoint:n=>`Start at ${n}`,fromZero:'Start at 0! Treat the first number as your first move.',pos:n=>`Your position: ${n}`,correct:'Correct! Great move.',incorrect:'Almost! Review the movement.',begin:'Predict the finish',beginDesc:'Move on the number line, then check your answer.',beginDetail:'Follow each movement to learn the rule.',result:n=>`Answer: ${n}.`,chapterNote:'Finish all ten, even if you miss some.',challengeNote:'Keep collecting correct answers.',finalNote:'Finish this stage to earn a certificate.',challengeFinal:'Your certificate appears when time is up.',progress:'PROGRESS',scoreUnit:'/ 10 correct',questionUnit:'correct',accuracy:n=>`Accuracy ${n}%`,bonus:'3 correct in a row +2s',penalty:'Wrong answer −5s',nextResult:'VIEW RESULT & AWARD →',certAgain:'VIEW AWARD',empty:'No certificates yet. Finish a stage to earn one!',chapterCert:'CERTIFICATE',perfectCert:'PERFECT AWARD',challengeCert:'60-SECOND AWARD',certAward:'Congratulations on answering every question correctly!',certFinish:'You successfully completed this stage.',certTimer:'You finished the 60-second challenge.',certCount:'CORRECT',certRate:'ACCURACY',certDate:'ISSUED AT',certPlayer:'PLAYER',certNo:'SUBMISSION ID',certFraction:(a,b)=>`${a} / ${b} correct`,certScore:n=>`${n} correct`,introLearn:'LEARN THE BASICS',tutorialCardTitle:'Your first number line',tutorialCardText:'Four quick steps with our smiling runner. Learn to move left and right!',tutorialCardButton:'START TUTORIAL ↗',tutorialDoneButton:'PRACTICE AGAIN ↗',tutorialCardDone:'Tutorial complete! You can replay any time.',tutorialTitle:'Your first number line',tutorialReady:'Give it a try!',tutorialReadyText:'Move along the number line and check the finish.',tutorialWrong:'Nearly! Give it another try.',tutorialWrongDetail:'You can try as many times as you like. Use the arrows.',tutorialCorrect:'You got it! Nice move!',tutorialFinished:'Tutorial complete!',tutorialFinishedText:'You mastered all four moves. Head to Stage 1!',tutorialNext:'NEXT STEP →',tutorialNextStage:'GO TO STAGE 1 →',tutorialProgress:'TUTORIAL',tutorialScoreUnit:'/ 4 STEPS',tutorialScoreDetail:'Try again as often as you need.',tutorialScoreNote:'Learn how numbers move.',tutorialFooter:'This is practice. Mistakes are part of learning!'}};
+Object.assign(TXT.ja,{
+ terms:'利用条件',
+ legacy:'旧端末記録',combo:n=>`連続 ${n}`,stepDone:'その位置で正解。次の移動を考えよう。',retryMove:'出発点と移動の向きを確かめて、もう一度。',
+ stepProgress:(i,n,start)=>`移動 ${i} / ${n} · 出発点：${start}`,
+ challengeDesc:'初期60秒。誤答−5秒、3連続正解目から正解ごとに＋1秒。',
+ bonus:'連続正解 ＋1秒',chapterCert:'銀賞状・学習修了証',perfectCert:'金賞状・パーフェクト',
+ nameDesc:'PNGに表示する名前です。ニックネームで参加できます。名前は端末に保存されません。',
+ nameExample:'例：ラインランナー',applyName:'賞状に反映',anonymous:'プレイヤー',
+ historySub:'この端末に無記名で保存された記録です。共有端末では使い終わったら記録を消去できます。',
+ deleteRecords:'この端末の記録を消去',confirmDelete:'この端末の賞状・最高記録・練習の進捗を消去しますか？',
+ graduation:'卒業証明書',graduationNote:'すべての学習ステージを修了しました。',unit:'正の数・負の数',gold:'金',silver:'銀',
+ best:n=>`チャレンジ自己ベスト：${n}問正解`,counts:(correct,wrong,total)=>`${total}問中 正解 ${correct}・誤答 ${wrong}`,
+ awardFoot:(stage,attempt)=>`${stage} ｜ 挑戦 ${attempt} 回目`
+});
+Object.assign(TXT.en,{
+ terms:'Terms of Use',
+ legacy:'Archived device record',combo:n=>`Streak ${n}`,stepDone:'That position is correct. Work out the next move.',retryMove:'Check your starting point and direction, then try again.',
+ stepProgress:(i,n,start)=>`Move ${i} / ${n} · Start at ${start}`,
+ challengeDesc:'Starts with 60s. A wrong answer costs 5s. From your third consecutive correct answer, each correct answer adds 1s.',
+ bonus:'Correct streak +1s',chapterCert:'SILVER COMPLETION CERTIFICATE',perfectCert:'PERFECT GOLD AWARD',
+ nameDesc:'This name appears on the PNG. You can use a nickname. The browser does not save the name.',
+ nameExample:'e.g. Line Runner',applyName:'APPLY TO AWARD',anonymous:'Player',
+ historySub:'This device saves unnamed records. On a shared device, you can clear the records when you finish.',
+ deleteRecords:'Clear records on this device',confirmDelete:'Clear awards, best scores, and practice progress on this device?',
+ graduation:'GRADUATION CERTIFICATE',graduationNote:'All learning stages completed.',unit:'Positive and negative numbers',gold:'Gold',silver:'Silver',
+ best:n=>`Challenge personal best: ${n} correct`,counts:(correct,wrong,total)=>`${correct} correct · ${wrong} wrong · ${total} total`,
+ awardFoot:(stage,attempt)=>`${stage} | Attempt ${attempt}`
+});
+let lang='ja',player='',screen='home',chapter=-1,challenge=false,tutorial=false,tutorialStep=0,tutorialPassed=false,records={},best=0,attempts=0,missed=false,checkpoint=1,feedback='ready',tutorialFeedback='start',question=null,guess=0,answers=[],locked=false,expired=false,streak=0,deadline=0,interval=null,advance=null,roundKey=0,certificates=[],latest=null,winPending=false,drag=false,pending=null;
+const t=(k,...args)=>{const v=TXT[lang][k];return typeof v==='function'?v(...args):(v??k)};
+const fmt=n=>n<0?'−'+Math.abs(n):String(n),signed=n=>n>0?'+'+n:fmt(n);
+const {LIMIT,delta,makeQ,generate}=window.NumberLineDashEngine;
+function renderEquation(){
+ const q=question,el=$('equation');
+ const parts=[fmt(q.first),...q.steps.map(step=>` ${step.op==='+'?'+':'−'} (${signed(step.n)})`)];
+ const active=!tutorial&&!challenge&&!locked?checkpoint-(q.zero?1:0):-1;
+ el.replaceChildren(...parts.map((part,i)=>{
+  const term=document.createElement(i===active?'mark':'span');
+  term.textContent=part;
+  return term;
+ }),document.createTextNode(locked?` = ${fmt(q.target)}`:' = ?'));
+}
+function movement(op,n){
+ const d=delta({op,n});
+ if(!d)return lang==='ja'?'0なので動かない':'Zero: stay in place';
+ const direction=d>0?(lang==='ja'?'右':'right'):(lang==='ja'?'左':'left');
+ if(lang==='ja')return (op==='-'?'引く数の符号と反対に、':'足す数の符号に従って、')+direction+'へ'+Math.abs(d);
+ return (op==='-'?'Reverse the sign: ':'Follow the sign: ')+Math.abs(d)+' '+direction;
+}
+function evaluation(q){
+ const parts=[];
+ if(q.zero)parts.push(lang==='ja'?`最初の数：0 → ${fmt(q.first)}`:`First term: 0 → ${fmt(q.first)}`);
+ q.steps.forEach((step,i)=>parts.push(`${step.op==='+'?'+':'−'} (${signed(step.n)})：${movement(step.op,step.n)} → ${fmt(q.path[(q.zero?2:1)+i])}`));
+ return parts.join(' / ');
+}
+function stepHint(){
+ if(question.zero&&checkpoint===1)return lang==='ja'?'最初の数の位置を0から探そう。':'Locate the first number starting from zero.';
+ const step=question.steps[checkpoint-(question.zero?2:1)];
+ return movement(step.op,step.n);
+}
+function origin(){return !challenge&&!tutorial?question.path[checkpoint-1]:question.start;}
+function renderFeedback(){
+ const good=feedback==='good',bad=feedback==='bad',step=feedback==='step';
+ $('answerBox').className='answercard '+(bad?'bad':good||step?'good':'');
+ $('answerIcon').textContent=bad?'↺':good||step?'✓':'✦';
+ $('answerHeading').textContent=bad?t('incorrect'):good||step?t('correct'):t('begin');
+ $('answerMessage').textContent=good||(challenge&&bad)?t('result',fmt(question.target)):step?t('stepDone'):bad?t('retryMove'):t('beginDesc');
+ $('answerDetail').textContent=locked?evaluation(question)+(challengeAdjustment?' / '+t(challengeAdjustment):''):bad?stepHint():t('beginDetail');
+ $('nextAnswer').textContent=answers.length>=COUNT?t('nextResult'):t('next');
+}
+let challengeAdjustment=null;
+const grading=()=>Math.round(100*answers.filter(x=>x).length/Math.max(1,answers.length));
+function stamp(){const d=new Date(),p=(n,w=2)=>String(n).padStart(w,'0');const tz=-d.getTimezoneOffset(),zs=tz<0?'-':'+';return `${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}.${p(d.getMilliseconds(),3)} ${zs}${p(Math.floor(Math.abs(tz)/60))}:${p(Math.abs(tz)%60)}`;}
+function uniqueId(){if(globalThis.crypto&&crypto.getRandomValues){const a=new Uint8Array(6);crypto.getRandomValues(a);return Array.from(a,n=>n.toString(16).padStart(2,'0')).join('').toUpperCase();}return Math.floor(Math.random()*1e12).toString(16).toUpperCase().padStart(12,'0');}
+function record(c){
+ if(c.type==='challenge'){best=Math.max(best,c.correct);return;}
+ if(c.type!=='chapter'||!STAGES.some(s=>s.id===c.stage))return;
+ const prior=records[c.stage]||{attempts:0,accuracy:0,gold:false};
+ records[c.stage]={attempts:Math.max(prior.attempts,c.attempt||prior.attempts+1),accuracy:Math.max(prior.accuracy,c.accuracy),gold:prior.gold||c.perfect};
+}
+function saveState(){
+ try{localStorage.setItem(STORAGE,JSON.stringify({certificates:certificates.slice(0,50),tutorialPassed,records,best,attempts}));}catch{}
+}
+function loadState(){
+ try{
+  const data=JSON.parse(localStorage.getItem(STORAGE)||'null');
+  if(!data||typeof data!=='object')return;
+  tutorialPassed=data.tutorialPassed===true||Boolean(data.player&&data.tutorialPassed?.[data.player]===true);
+  certificates=Array.isArray(data.certificates)?data.certificates.filter(c=>c&&c.date&&c.id).slice(0,50).map(c=>{
+   const {player:oldName,...result}=c;
+   return data.player&&oldName!==data.player?{...result,archived:true}:result;
+  }):[];
+  if(data.records&&typeof data.records==='object'){
+   records=data.records;
+   best=data.best||0;
+   attempts=data.attempts||0;
+  }else{
+   for(const c of [...certificates].reverse())if(!c.archived)record(c);
+   attempts=certificates.filter(c=>c.type==='challenge'&&!c.archived).length;
+  }
+  if(Object.hasOwn(data,'player'))saveState();
+ }catch{}
+}
+function go(target){screen=target;document.body.dataset.screen=target;for(const v of ['home','learn','history','game'])$(v+'Screen').classList.toggle('hide',v!==target);window.scrollTo(0,0);if(target!=='game')clearRunning();if(target==='history')renderHistory();if(target==='home')renderChapters();}
+
+function renderChapters(){const grid=$('chapterGrid');grid.replaceChildren();const passed=tutorialPassed;$('tutorialInvite').classList.toggle('done',passed);$('tutorialHome').textContent=passed?t('tutorialDoneButton'):t('tutorialCardButton');$('tutorialInvite').querySelector('p').textContent=passed?t('tutorialCardDone'):t('tutorialCardText');const done=id=>Boolean(records[id]);$('completedPill').textContent=t('pComplete',STAGES.filter(s=>done(s.id)).length);STAGES.forEach((s,i)=>{const card=document.createElement('button');card.type='button';card.className='chcard';const finished=done(s.id);if(finished)card.classList.add('done');card.style.textAlign='left';const num=document.createElement('div');num.className='num';num.textContent=String(i+1).padStart(2,'0');const tag=document.createElement('div');tag.className='tag';tag.textContent=(finished?'✓ '+t('done'):'STAGE '+String(i+1).padStart(2,'0'))+' · '+(lang==='ja'?s.capJa:s.capEn);const h=document.createElement('h3');h.textContent=lang==='ja'?s.ja:s.en;const p=document.createElement('p');p.textContent=lang==='ja'?s.hintJa:s.hintEn;const foot=document.createElement('div');foot.className='foot';foot.innerHTML=`<span>${finished?t('retry'):t('newPlay')}</span><span class="goarrow">↗</span>`;card.append(num,tag,h,p,foot);card.addEventListener('click',()=>startStage(i));grid.appendChild(card)})}
+function renderLessons(){const ls=$('lessons');ls.replaceChildren();const content=lang==='ja'?[
+['01','足し算は「そのまま進む」','正の数を足すと右、負の数を足すと左へ。','(+3) + (−5) = −2'],
+['02','引き算は「反対向きへ」','正の数を引くと左、負の数を引くと右へ。0を引くと動かない。','(+4) − (−3) = +7'],
+['03','演算記号と数の符号を見分ける','演算の「＋／−」と、かっこの中の「＋／−」を分けて読む。','2 − (−3) = 2 + (+3) = 5'],
+['04','0から全部たどる','複合問題では、最初の数も0からの移動として表してみよう。','0 → +6 → +4 → +7']]:[
+['01','Addition follows the sign','Move right for a positive addend, left for a negative addend.','(+3) + (−5) = −2'],
+['02','Subtraction reverses the move','Subtracting a positive moves left, subtracting a negative moves right, and subtracting zero leaves you in place.','(+4) − (−3) = +7'],
+['03','Read both signs','Check the operation and the sign inside parentheses.','2 − (−3) = 2 + (+3) = 5'],
+['04','Trace everything from zero','In longer expressions, the first number can also be a move from zero.','0 → +6 → +4 → +7']];content.forEach(([n,title,desc,ex])=>{const el=document.createElement('article');el.className='lesson';const small=document.createElement('div');small.className='index';small.textContent='LESSON '+n;const h=document.createElement('h3');h.textContent=title;const p=document.createElement('p');p.textContent=desc;const example=document.createElement('div');example.className='example';example.textContent=ex;el.append(small,h,p,example);ls.append(el)})}
+function clearRunning(){if(interval)clearInterval(interval);interval=null;if(advance)clearTimeout(advance);advance=null;roundKey++;}
+function startTutorial(){clearRunning();tutorial=true;tutorialStep=0;tutorialFeedback='start';chapter=-1;challenge=false;question=null;answers=[];streak=0;locked=false;expired=false;winPending=false;go('game');renderQuestion()}
+function startStage(i){clearRunning();tutorial=false;chapter=i;challenge=false;question=null;answers=[];streak=0;locked=false;expired=false;winPending=false;go('game');renderQuestion()}
+function startChallenge(){clearRunning();tutorial=false;chapter=-1;challenge=true;question=null;answers=[];streak=0;locked=false;expired=false;winPending=false;deadline=performance.now()+60000;go('game');renderQuestion();interval=setInterval(()=>{if(!expired&&performance.now()>=deadline)finishChallenge();else renderScore()},80)}
+function renderPips(){const p=$('pips');p.replaceChildren();if(tutorial){p.classList.remove('hide');for(let i=0;i<TUTORIAL_LENGTH;i++){const dot=document.createElement('i');dot.className=i<tutorialStep||(i===tutorialStep&&locked)?'good':i===tutorialStep?'current':'';p.append(dot)}return;}if(challenge){p.classList.add('hide');return;}p.classList.remove('hide');for(let i=0;i<COUNT;i++){const node=document.createElement('i');node.className=i<answers.length?(answers[i]?'good':'bad'):(i===answers.length?'current':'');p.appendChild(node)}}
+function renderQuestion(){if(expired)return;
+checkpoint=1;missed=false;feedback='ready';challengeAdjustment=null;
+if(tutorial){
+ const step=TUTORIAL[tutorialStep];question=makeQ(step.first,step.steps,false);guess=question.start;locked=false;tutorialFeedback='start';
+ $('gameTitle').textContent=t('tutorialTitle');$('gameEyebrow').textContent='STAGE 00 / TUTORIAL';
+ $('missionNum').textContent=`STEP ${tutorialStep+1} / ${TUTORIAL_LENGTH}`;
+ $('progressHelp').textContent=t('tutorialProgress');renderEquation();
+ $('startHint').textContent=t('startPoint',fmt(question.start));$('tutorialCoach').classList.remove('hide');
+ $('tutorialPrompt').textContent=lang==='ja'?step.ja:step.en;$('tutorialDetail').textContent=lang==='ja'?step.detailJa:step.detailEn;
+ $('tutorialCount').textContent=`${tutorialStep+1} / ${TUTORIAL_LENGTH}`;
+ $('tutorialFill').style.width=(tutorialStep*100/TUTORIAL_LENGTH)+'%';
+ $('answerBox').className='answercard';$('answerIcon').textContent='✦';$('answerHeading').textContent=t('tutorialReady');
+ $('answerMessage').textContent=t('tutorialReadyText');$('answerDetail').textContent=lang==='ja'?step.detailJa:step.detailEn;
+ $('submitAnswer').classList.remove('hide');$('submitAnswer').disabled=false;$('nextAnswer').classList.add('hide');
+ $('gameFooter').textContent=t('tutorialFooter');renderPips();renderScore();drawTrack(false);return;
+}
+$('tutorialCoach').classList.add('hide');
+if(!challenge&&answers.length>=COUNT){finishStage();return;}const stage=challenge?Math.min(3,Math.floor(answers.length/3)):chapter;const k=answers.length+1;question=generate(stage,k);guess=question.start;locked=false;winPending=false;const ttl=challenge?t('challengeTitle'):(lang==='ja'?STAGES[stage].ja:STAGES[stage].en);$('gameTitle').textContent=ttl;$('gameEyebrow').textContent=challenge?'EXTRA MISSION / 60s':`STAGE ${String(stage+1).padStart(2,'0')} / 04`;$('missionNum').textContent=challenge?`MISSION ${String(answers.length+1).padStart(2,'0')}`:`MISSION ${String(answers.length+1).padStart(2,'0')} / 10`;$('progressHelp').textContent=question.zero?'START FROM ZERO':'KEEP GOING!';renderEquation();$('startHint').textContent=question.zero?t('fromZero'):t('startPoint',fmt(question.start));$('answerBox').className='answercard';$('answerIcon').textContent='✦';$('answerHeading').textContent=t('begin');$('answerMessage').textContent=t('beginDesc');$('answerDetail').textContent=t('beginDetail');$('submitAnswer').classList.remove('hide');$('nextAnswer').classList.add('hide');$('submitAnswer').disabled=false;$('gameFooter').textContent=challenge?t('challengeFinal'):t('finalNote');renderPips();renderScore();drawTrack(false);}
+function renderScore(){if(tutorial){$('scoreHeading').textContent=t('tutorialProgress');$('scoreValue').textContent=tutorialStep+(locked?1:0);$('scoreUnit').textContent=t('tutorialScoreUnit');$('scoreDetail').textContent=t('tutorialScoreDetail');$('accuracyLabel').textContent=t('tutorialScoreNote');$('timeRemain').textContent='∞';return;}const n=answers.filter(Boolean).length,acc=grading();$('scoreHeading').textContent=challenge?'TIME ATTACK':t('progress');$('scoreValue').textContent=n;$('scoreUnit').textContent=challenge?' '+t('questionUnit'):t('scoreUnit');$('scoreDetail').textContent=challenge?t('challengeNote'):t('chapterNote');$('accuracyLabel').textContent=(challenge?t('combo',streak)+' · ':'')+t('accuracy',acc);$('timeRemain').textContent=challenge?`${Math.max(0,Math.ceil((deadline-performance.now())/1000))}s`:'∞';}
+function svg(tag,attrs,text){const el=document.createElementNS(NS,tag);Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,String(v)));if(text!==undefined)el.textContent=text;return el}
+function xp(n){return 40+(n+LIMIT)*920/(2*LIMIT)}
+function drawTicks(){const root=$('ticks');root.replaceChildren();for(let n=-LIMIT;n<=LIMIT;n++){root.append(svg('line',{x1:xp(n),x2:xp(n),y1:n===0?82:91,y2:n===0?128:119,class:'tline'}));if(n%3===0||n===0)root.append(svg('text',{x:xp(n),y:150,'text-anchor':'middle',class:'ticktxt'},fmt(n)))}}
+function drawTrack(show=false){const routes=$('routes'),markers=$('markers');routes.replaceChildren();markers.replaceChildren();if(!question)return;const q=question;routes.append(svg('line',{x1:xp(origin()),y1:105,x2:xp(guess),y2:105,class:'guessroute'}));markers.append(svg('circle',{cx:xp(origin()),cy:105,r:15,fill:'#81e7be',stroke:'#d6ffeb','stroke-width':2}));markers.append(svg('text',{x:xp(origin()),y:56,'text-anchor':'middle','font-size':13,'font-weight':900,fill:'#c9ffeb'},t('departure')));markers.append(svg('circle',{cx:xp(guess),cy:105,r:19,fill:'#ffa96a',stroke:'#fff2db','stroke-width':2.5}));
+markers.append(svg('circle',{cx:xp(guess)-7,cy:101,r:2.3,fill:'#183d3a'}));
+markers.append(svg('circle',{cx:xp(guess)+7,cy:101,r:2.3,fill:'#183d3a'}));
+markers.append(svg('path',{d:`M${xp(guess)-9} 111 Q${xp(guess)} 119 ${xp(guess)+9} 111`,fill:'none',stroke:'#183d3a','stroke-width':2.8,'stroke-linecap':'round'}));
+markers.append(svg('path',{d:`M${xp(guess)-1} 86 l-7 -10 M${xp(guess)+1} 86 l7 -10`,fill:'none',stroke:'#ffdca5','stroke-width':3,'stroke-linecap':'round'}));if(show){q.path.slice(1).forEach((n,i)=>{const old=q.path[i],yy=165+i*23,dir=Math.sign(n-old);if(!dir){markers.append(svg('text',{x:xp(n),y:yy,'text-anchor':'middle','font-size':18,fill:'#ccfce7'},'0'));return;}routes.append(svg('line',{x1:xp(old),y1:yy,x2:xp(n)-dir*5,y2:yy,class:'route'}));const arrow=dir>0?`${xp(n)},${yy} ${xp(n)-13},${yy-6} ${xp(n)-13},${yy+6}`:`${xp(n)},${yy} ${xp(n)+13},${yy-6} ${xp(n)+13},${yy+6}`;markers.append(svg('polygon',{points:arrow,fill:'#84e7bd'}));markers.append(svg('text',{x:(xp(old)+xp(n))/2,y:yy-7,'text-anchor':'middle','font-size':13,'font-weight':900,fill:'#ccfce7'},signed(n-old)))});markers.append(svg('circle',{cx:xp(q.target),cy:105,r:9,fill:'#9bbcfc',stroke:'#f5fbff','stroke-width':3}))}const axis=$('track');axis.setAttribute('viewBox',show?'0 0 1000 263':'0 0 1000 196');axis.setAttribute('aria-valuenow',String(guess));axis.setAttribute('aria-valuetext',fmt(guess));$('currentPosition').textContent=t('pos',fmt(guess));if(!drag){const host=$('trackscroll');if(host.scrollWidth>host.clientWidth){let x=xp(guess)*axis.getBoundingClientRect().width/1000;host.scrollLeft=Math.max(0,Math.min(host.scrollWidth-host.clientWidth,x-host.clientWidth/2))}}}
+function setGuess(n){if(locked||expired||!question)return;guess=Math.min(LIMIT,Math.max(-LIMIT,Math.round(n)));drawTrack(false)}
+function submit(){if(!question||locked||expired)return;
+if(tutorial){
+ const correct=guess===question.target;const box=$('answerBox');
+ box.className='answercard '+(correct?'good':'bad');
+ $('answerIcon').textContent=correct?'✓':'↺';
+ tutorialFeedback=correct?'good':'bad';
+ if(!correct){$('answerHeading').textContent=t('tutorialWrong');$('answerMessage').textContent=t('tutorialWrongDetail');
+ $('answerDetail').textContent=lang==='ja'?TUTORIAL[tutorialStep].detailJa:TUTORIAL[tutorialStep].detailEn;
+ $('submitAnswer').classList.remove('hide');return;}
+ locked=true;renderEquation();$('answerHeading').textContent=tutorialStep===TUTORIAL_LENGTH-1?t('tutorialFinished'):t('tutorialCorrect');
+ $('answerMessage').textContent=tutorialStep===TUTORIAL_LENGTH-1?t('tutorialFinishedText'):t('result',fmt(question.target));
+ $('answerDetail').textContent=evaluation(question);$('submitAnswer').classList.add('hide');
+ $('nextAnswer').classList.remove('hide');$('nextAnswer').textContent=tutorialStep===TUTORIAL_LENGTH-1?t('tutorialNextStage'):t('tutorialNext');
+ $('tutorialFill').style.width=((tutorialStep+1)*100/TUTORIAL_LENGTH)+'%';renderPips();renderScore();drawTrack(true);return;
+}
+if(challenge&&performance.now()>=deadline){finishChallenge();return;}
+ const target=challenge?question.target:question.path[checkpoint];
+ const correct=guess===target;
+ if(!challenge&&!correct){missed=true;feedback='bad';renderFeedback();return;}
+ if(!challenge&&checkpoint<question.path.length-1){
+  checkpoint++;
+  renderEquation();
+  feedback='step';
+  $('startHint').textContent=t('stepProgress',checkpoint,question.path.length-1,fmt(origin()));
+  renderFeedback();
+  drawTrack(false);
+  return;
+ }
+ locked=true;
+ answers.push(correct&&!missed);
+ streak=correct?streak+1:0;
+ feedback=correct?'good':'bad';
+ if(challenge){
+  if(!correct){deadline-=5000;challengeAdjustment='penalty';}
+  else if(streak>=3){deadline+=1000;challengeAdjustment='bonus';}
+ }
+ renderEquation();
+ renderFeedback();
+ drawTrack(true);
+ $('submitAnswer').classList.add('hide');
+ renderPips();renderScore();
+ if(challenge){
+  const key=roundKey;
+  if(performance.now()>=deadline){finishChallenge();return;}
+  advance=setTimeout(()=>{if(key===roundKey&&!expired&&challenge)renderQuestion()},450);
+ }else{
+  $('nextAnswer').classList.remove('hide');
+  $('nextAnswer').focus({preventScroll:true});
+ }
+}
+function next(){if(tutorial){if(!locked)return;if(tutorialStep===TUTORIAL_LENGTH-1){tutorialPassed=true;saveState();startStage(0);}else{tutorialStep++;renderQuestion();}return;}if(challenge||!locked)return;if(answers.length>=COUNT)finishStage();else renderQuestion()}
+function award(stage){
+ const type=stage===null?'challenge':'chapter',id=stage===null?null:STAGES[stage].id;
+ const c={type,stage:id,correct:answers.filter(Boolean).length,total:answers.length,accuracy:grading(),date:stamp(),id:uniqueId(),perfect:type==='chapter'&&answers.length===COUNT&&answers.every(Boolean),attempt:id?(records[id]?.attempts||0)+1:++attempts};
+ record(c);certificates.unshift(c);certificates=certificates.slice(0,50);saveState();
+ return c;
+}
+function finishStage(){if(winPending)return;winPending=true;locked=true;const c=award(chapter);openAward(c);renderChapters()}
+function finishChallenge(){if(expired)return;expired=true;locked=true;clearRunning();const c=award(null);openAward(c);renderScore();}
+function retranslate(){document.documentElement.lang=lang;$('nameInput').placeholder=t('nameExample');$('certificate').setAttribute('aria-label',t('certHeading'));$('historyNav').textContent=t('historyNav');document.querySelectorAll('[data-i]').forEach(el=>{const v=t(el.dataset.i);if(el.dataset.i==='heroTitle'||el.dataset.i==='heroSub')el.innerHTML=v;else el.textContent=v});$('langNav').textContent=lang==='ja'?'EN':'日本語';$('awardLanguage').textContent=$('langNav').textContent;renderLessons();renderChapters();if(screen==='history')renderHistory();$('track').setAttribute('aria-label',t('lineTitle'));if(latest&&!$('certOverlay').classList.contains('hide'))openAward(latest);if(screen==='game'&&question){$('gameTitle').textContent=tutorial?t('tutorialTitle'):challenge?t('challengeTitle'):(lang==='ja'?STAGES[chapter].ja:STAGES[chapter].en);renderEquation();$('startHint').textContent=question.zero?t('fromZero'):t('startPoint',fmt(question.start));if(tutorial){const step=TUTORIAL[tutorialStep];$('tutorialPrompt').textContent=lang==='ja'?step.ja:step.en;$('tutorialDetail').textContent=lang==='ja'?step.detailJa:step.detailEn;$('gameFooter').textContent=t('tutorialFooter');$('answerHeading').textContent=tutorialFeedback==='good'?(tutorialStep===TUTORIAL_LENGTH-1?t('tutorialFinished'):t('tutorialCorrect')):tutorialFeedback==='bad'?t('tutorialWrong'):t('tutorialReady');$('answerMessage').textContent=tutorialFeedback==='good'?(tutorialStep===TUTORIAL_LENGTH-1?t('tutorialFinishedText'):t('result',fmt(question.target))):tutorialFeedback==='bad'?t('tutorialWrongDetail'):t('tutorialReadyText');$('answerDetail').textContent=tutorialFeedback==='good'?evaluation(question):(lang==='ja'?step.detailJa:step.detailEn);$('nextAnswer').textContent=tutorialStep===TUTORIAL_LENGTH-1?t('tutorialNextStage'):t('tutorialNext');}else{$('gameFooter').textContent=challenge?t('challengeFinal'):t('finalNote');if(!challenge&&checkpoint>1)$('startHint').textContent=t('stepProgress',checkpoint,question.path.length-1,fmt(origin()));renderFeedback();}renderScore();drawTrack(locked);}}
+function renderHistory(){const grid=$('historyList');grid.replaceChildren();const owned=certificates;$('recordBest').textContent=t('best',best);$('graduate').classList.toggle('hide',!STAGES.every(stage=>records[stage.id]));$('deleteRecords').disabled=!owned.length&&!tutorialPassed&&!Object.keys(records).length;if(!owned.length){const p=document.createElement('p');p.className='empty';p.textContent=t('empty');grid.append(p);return}owned.forEach(c=>{const b=document.createElement('div');b.className='history';const small=document.createElement('small');small.textContent=c.date+(c.archived?' · '+t('legacy'):'');const title=document.createElement('b');title.textContent=c.type==='challenge'?t('challengeCert'):(c.perfect?t('perfectCert'):t('chapterCert'));const desc=document.createElement('div');desc.textContent=c.type==='challenge'?t('certScore',c.correct):`${STAGES.find(stage=>stage.id===c.stage)?.[lang]||''} · ${t('accuracy',c.accuracy)}`;const btn=document.createElement('button');btn.textContent=t('certAgain');btn.addEventListener('click',()=>openAward(c));b.append(small,title,desc,btn);grid.append(b)})}
+function openAward(c){latest=c;drawCertificate(c);$('certOverlay').classList.remove('hide');if(!$('certOverlay').open)$('certOverlay').showModal();$('certStat').textContent=c.type==='graduation'?t('graduation'):t('counts',c.correct,c.total-c.correct,c.total);$('certTime').textContent=c.date;}
+function pathRound(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
+function textFit(ctx,text,maxWidth,base,min=35){let s=base;do{ctx.font=`900 ${s}px system-ui, sans-serif`;if(ctx.measureText(text).width<=maxWidth)break;s-=2}while(s>min);return s}
+function drawCertificate(c){const cn=$('certificate'),ctx=cn.getContext('2d'),perfect=c.type==='chapter'&&c.perfect,challengeCert=c.type==='challenge';let theme=perfect?['#fffaf0','#e2b14f','#815e20','#fee8aa']:challengeCert?['#f4f3ff','#8a77d9','#48368f','#ddd6ff']:['#f3faf5','#4aa884','#1f6653','#d3ebdf'];const [paper,accent,dark,soft]=theme;const w=cn.width,h=cn.height;ctx.fillStyle=paper;ctx.fillRect(0,0,w,h);ctx.lineWidth=10;ctx.strokeStyle=accent;ctx.strokeRect(27,27,w-54,h-54);ctx.lineWidth=2;ctx.strokeStyle=dark;ctx.strokeRect(47,47,w-94,h-94);ctx.save();ctx.globalAlpha=.09;ctx.fillStyle=accent;for(let i=0;i<8;i++){ctx.beginPath();ctx.arc(80+i*185,120+(i%2)*54,100,0,Math.PI*2);ctx.fill()}ctx.restore();ctx.textAlign='center';ctx.fillStyle=dark;ctx.font='950 35px system-ui,sans-serif';ctx.fillText('NUMBER LINE DASH',w/2,112);ctx.font='850 22px system-ui,sans-serif';ctx.fillText('MANATY LAB  ·  '+t('unit'),w/2,150);ctx.fillStyle=accent;ctx.font=`900 ${perfect?95:84}px system-ui,sans-serif`;ctx.fillText(perfect?'PERFECT!':challengeCert?'TIME ATTACK!':'WELL DONE!',w/2,278);
+let stageName=challengeCert?t('challengeTitle'):c.type==='graduation'?t('unit'):(lang==='ja'?STAGES.find(s=>s.id===c.stage)?.ja:STAGES.find(s=>s.id===c.stage)?.en)||'';ctx.fillStyle=dark;const certTitle=c.type==='graduation'?t('graduation'):challengeCert?t('challengeCert'):perfect?t('perfectCert'):t('chapterCert');textFit(ctx,certTitle,1120,65);ctx.fillText(certTitle,w/2,350);textFit(ctx,stageName,1060,39,24);ctx.fillText(stageName,w/2,402);
+ctx.fillStyle='#ffffff';pathRound(ctx,130,450,1180,355,24);ctx.fill();ctx.fillStyle=dark;ctx.textAlign='center';ctx.font='800 25px system-ui,sans-serif';ctx.fillText(t('certPlayer'),w/2,508);const shownName=player||t('anonymous');textFit(ctx,shownName,1020,66,32);ctx.fillText(shownName,w/2,585,1020);ctx.fillStyle=accent;ctx.font='1000 105px system-ui,sans-serif';if(c.type==='graduation'){
+ ctx.font='800 27px system-ui,sans-serif';
+ STAGES.forEach((stage,i)=>ctx.fillText(`${stage[lang]} (${stage.id}) · ${t(records[stage.id].gold?'gold':'silver')}`,w/2,631+i*40,1050));
+}else{
+ ctx.fillText(challengeCert?String(c.correct):c.accuracy+'%',w/2,712);
+}ctx.fillStyle=dark;ctx.font='800 25px system-ui,sans-serif';if(c.type!=='graduation')ctx.fillText(t('counts',c.correct,c.total-c.correct,c.total),w/2,766,1020);
+ctx.font='700 24px system-ui,sans-serif';ctx.fillText(c.type==='graduation'?t('graduationNote'):t('awardFoot',c.stage||'60s',c.attempt||'—'),w/2,850,1200);ctx.fillStyle=dark;ctx.font='750 24px system-ui,sans-serif';ctx.fillText(`${t('certDate')}: ${c.date}`,w/2,913);ctx.font='650 17px system-ui,sans-serif';ctx.fillText(`${t('certNo')}: ${c.id}`,w/2,953)}
+async function saveAward(){if(!latest)return;drawCertificate(latest);const canvas=$('certificate');const file=`number-line-dash_${latest.stage||latest.type}_${latest.id}.png`;if(canvas.toBlob){const blob=await new Promise(r=>canvas.toBlob(r,'image/png'));if(blob){const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download=file;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);return}}const a=document.createElement('a');a.download=file;a.href=canvas.toDataURL('image/png');a.click()}
+
+$('tutorialHome').onclick=startTutorial;
+$('startHome').onclick=()=>{go('home');$('stageArea').scrollIntoView({block:'start'});};
+$('learnHome').onclick=()=>go('learn');$('learnContinue').onclick=()=>go('home');
+$('challengeHome').onclick=startChallenge;$('historyNav').onclick=()=>go('history');
+$('nameCancel').onclick=()=>{pending=null;$('nameOverlay').close();$('nameOverlay').classList.add('hide')};$('nameSave').onclick=()=>{const input=$('nameInput').value.replace(/[\u0000-\u001f\u007f\u202a-\u202e\u2066-\u2069]/g,'').trim().replace(/\s+/g,' ').slice(0,32);player=input;$('nameOverlay').close();$('nameOverlay').classList.add('hide');renderChapters();if(pending){const fn=pending;pending=null;fn()}else go('home')};$('nameInput').onkeydown=e=>{if(e.key==='Enter')$('nameSave').click()};
+$('langNav').onclick=()=>{lang=lang==='ja'?'en':'ja';retranslate()};document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>{clearRunning();expired=true;go('home')});$('resetPosition').onclick=()=>question&&setGuess(origin());document.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>setGuess(guess+Number(b.dataset.move)));$('submitAnswer').onclick=submit;$('nextAnswer').onclick=next;
+$('track').onkeydown=e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();setGuess(e.key==='Home'?-LIMIT:e.key==='End'?LIMIT:guess+(e.key==='ArrowLeft'?-1:1))}};
+function pointerToGuess(e){const r=$('track').getBoundingClientRect();setGuess(Math.round(((e.clientX-r.left)*1000/r.width-40)/(920/(LIMIT*2)))-LIMIT)}
+$('track').addEventListener('pointerdown',e=>{if(!question||locked||expired)return;drag=true;$('track').setPointerCapture(e.pointerId);pointerToGuess(e)});$('track').addEventListener('pointermove',e=>{if(drag)pointerToGuess(e)});$('track').addEventListener('pointerup',()=>{drag=false;drawTrack(locked)});$('track').addEventListener('pointercancel',()=>{drag=false;drawTrack(locked)});
+$('certClose').onclick=()=>{ $('nameInput').value='';$('certOverlay').close();$('certOverlay').classList.add('hide');player='';if(screen==='game'&&(winPending||expired))go('home');};$('certSave').onclick=saveAward;
+$('awardName').onclick=()=>{pending=()=>openAward(latest);$('nameInput').value=player;$('nameOverlay').classList.remove('hide');$('nameOverlay').showModal();$('nameInput').focus();};
+for(const [dialog,button] of [['nameOverlay','nameCancel'],['certOverlay','certClose']]){
+ $(dialog).addEventListener('cancel',event=>{event.preventDefault();$(button).click()});
+}
+$('awardLanguage').onclick=()=>$('langNav').click();
+$('graduate').onclick=()=>openAward({type:'graduation',date:stamp(),id:uniqueId()});
+$('deleteRecords').onclick=()=>{
+ if(!window.confirm(t('confirmDelete')))return;
+ player='';certificates=[];records={};best=0;attempts=0;tutorialPassed=false;latest=null;
+ try{localStorage.removeItem(STORAGE)}catch{}
+ renderHistory();renderChapters();
+};
+loadState();drawTicks();retranslate();
+})();
+</script>
+</body></html>
